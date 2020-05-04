@@ -1,9 +1,16 @@
 .page {
   font-family: "Inter", Arial, Helvetica, sans-serif;
   background-color: #000000;
+  padding: 45px 0 0 0;
 }
 
-/* div,
+@media (max-width: 320px) {
+  .page {
+    padding: 28px 0 0 0;
+  }
+}
+
+div,
 header,
 footer,
 section,
@@ -15,4 +22,4 @@ a,
 ul,
 li {
   border: 1px solid red;
-} */
+}
