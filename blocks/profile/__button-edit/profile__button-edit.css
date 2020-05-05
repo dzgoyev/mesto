@@ -1,0 +1,19 @@
+.profile__button-edit {
+  margin-left: 17px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url(../../../images/profile/button_edit.svg);
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #fff;
+}
+
+@media (max-width: 652px) {
+  .profile__button-edit {
+    width: 18px;
+    height: 18px;
+    margin-left: 4px;
+  }
+}
