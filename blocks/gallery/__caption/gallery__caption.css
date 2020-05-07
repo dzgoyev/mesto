@@ -1,7 +1,6 @@
 .gallery__caption {
   background-color: #fff;
   min-height: 79px;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;

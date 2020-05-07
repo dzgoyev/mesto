@@ -7,6 +7,39 @@
     <title>Сервис Mesto - фотографии с путешествий</title>
   </head>
   <body class="page">
+    <!-- Popup -->
+    <div class="popup">
+      <div class="popup__container">
+        <!-- Form -->
+        <section class="form">
+          <div class="form__close-toggle">
+            <img
+              src="../mesto/images/popup/close_icon.svg"
+              alt="Закрыть окно"
+              class="form__close-icon"
+            />
+          </div>
+          <div class="form__container">
+            <form class="form__register">
+              <div class="form__main-container popup__item">
+                <h2 class="form__title">Редактировать профиль</h2>
+                <fildset class="form__input-container">
+                  <input type="text" class="form__item" />
+                  <div class="form__line"></div>
+                  <input type="text" class="form__item" />
+                  <div class="form__line"></div>
+                </fildset>
+                <fildset class="form__handlers">
+                  <input type="submit" value="Сохранить" class="form__button" />
+                </fildset>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- End Forma -->
     <header class="header page__section">
       <img
         src="./images/logo/logo.svg"
@@ -31,6 +64,7 @@
         </div>
 
         <a href="" class="profile__button-add"> </a>
+        <!-- <button href="" class="profile__button-add"></button> -->
       </section>
 
       <!-- Gallery -->

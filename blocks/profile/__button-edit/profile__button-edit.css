@@ -10,6 +10,11 @@
   border: 1px solid #fff;
 }
 
+.profile__button-edit:hover {
+  opacity: 0.6;
+  cursor: url(../../../images/popup/hand_icon.svg), pointer;
+}
+
 @media (max-width: 652px) {
   .profile__button-edit {
     width: 18px;

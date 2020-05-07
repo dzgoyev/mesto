@@ -1,5 +1,6 @@
 .gallery__whishlist {
   margin-right: 21px;
-  position: relative;
-  top: 4px;
+  /* position: relative; */
+  /* top: 4px; */
+  margin-top: 4px;
 }

@@ -11,6 +11,11 @@
   background-repeat: no-repeat;
 }
 
+.profile__button-add:hover {
+  opacity: 0.6;
+  cursor: url(../../../images/popup/hand_icon.svg), pointer;
+}
+
 @media (max-width: 652px) {
   .profile__button-add {
     width: 100%;

@@ -1,0 +1,13 @@
+@import url(./__close-toggle/form__close-toggle.css);
+@import url(./__main-container/form__main-container.css);
+@import url(./__item/form__item.css);
+@import url(./__title/form__title.css);
+@import url(./__handlers/form__handlers.css);
+@import url(./__button/form__button.css);
+@import url(./__line/form__line.css);
+@import url(./__container/form__container.css);
+@import url(./__input-container/form__input-container.css);
+
+.form {
+  position: relative;
+}
