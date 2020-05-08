@@ -1,4 +1,4 @@
-.profile__title {
+.profile__name {
   font-size: 42px;
   line-height: 56px;
   color: #fff;
@@ -9,7 +9,7 @@
 }
 
 @media (max-width: 652px) {
-  .profile__title {
+  .profile__name {
     font-size: 27px;
     margin-left: 10px;
   }

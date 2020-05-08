@@ -7,39 +7,6 @@
     <title>Сервис Mesto - фотографии с путешествий</title>
   </head>
   <body class="page">
-    <!-- Popup -->
-    <div class="popup">
-      <div class="popup__container">
-        <!-- Form -->
-        <section class="form">
-          <div class="form__close-toggle">
-            <img
-              src="../mesto/images/popup/close_icon.svg"
-              alt="Закрыть окно"
-              class="form__close-icon"
-            />
-          </div>
-          <div class="form__container">
-            <form class="form__register">
-              <div class="form__main-container popup__item">
-                <h2 class="form__title">Редактировать профиль</h2>
-                <fildset class="form__input-container">
-                  <input type="text" class="form__item" />
-                  <div class="form__line"></div>
-                  <input type="text" class="form__item" />
-                  <div class="form__line"></div>
-                </fildset>
-                <fildset class="form__handlers">
-                  <input type="submit" value="Сохранить" class="form__button" />
-                </fildset>
-              </div>
-            </form>
-          </div>
-        </section>
-      </div>
-    </div>
-
-    <!-- End Forma -->
     <header class="header page__section">
       <img
         src="./images/logo/logo.svg"
@@ -55,16 +22,15 @@
           alt="Фото Кусто"
         />
         <div class="profile__description">
-          <a href="#" class="profile__link">
-            <h1 class="profile__title">Жак-Ив Кусто</h1></a
-          >
-          <a href="" class="profile__button-edit"> </a>
+          <!-- <a href="#" class="profile__link"> Если вдруг это ссылка-->
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <!-- </a> -->
+          <button type="button" class="profile__button-edit"></button>
 
-          <h2 class="profile__subtitle">Исследователь океана</h2>
+          <h2 class="profile__job">Исследователь океана</h2>
         </div>
 
-        <a href="" class="profile__button-add"> </a>
-        <!-- <button href="" class="profile__button-add"></button> -->
+        <button type="button" class="profile__button-add"></button>
       </section>
 
       <!-- Gallery -->
@@ -138,8 +104,43 @@
         </figure>
       </section>
     </main>
+
     <footer class="footer page__section">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+    <!-- Popup -->
+    <div class="popup">
+      <div class="popup__container">
+        <!-- Form -->
+        <section class="form">
+          <div class="form__close-toggle">
+            <img
+              src="../mesto/images/popup/close_icon.svg"
+              alt="Закрыть окно"
+              class="form__close-icon"
+            />
+          </div>
+          <div class="form__container">
+            <form class="form__register">
+              <div class="form__main-container popup__item">
+                <h2 class="form__title">Редактировать профиль</h2>
+                <fildset class="form__input-container">
+                  <input type="text" class="form__item" />
+                  <div class="form__line"></div>
+                  <input type="text" class="form__item" />
+                  <div class="form__line"></div>
+                </fildset>
+                <fildset class="form__handlers">
+                  <button type="submit" class="form__button">Сохранить</button>
+                </fildset>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+    <!-- End Forma -->
+    <script src="./js/index.js"></script>
+    <!-- <script src="./blocks/form/form.js"></script> -->
   </body>
 </html>

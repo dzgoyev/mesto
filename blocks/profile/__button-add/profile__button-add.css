@@ -9,6 +9,7 @@
   background-size: auto;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #000;
 }
 
 .profile__button-add:hover {

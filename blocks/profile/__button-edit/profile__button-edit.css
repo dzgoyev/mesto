@@ -8,6 +8,7 @@
   background-position: center;
   background-repeat: no-repeat;
   border: 1px solid #fff;
+  background-color: #000;
 }
 
 .profile__button-edit:hover {
