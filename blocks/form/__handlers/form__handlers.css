@@ -2,3 +2,9 @@
   margin: auto;
   padding-top: 48px;
 }
+
+@media (max-width: 543px) {
+  .form__handlers {
+    padding-top: 36px;
+  }
+}

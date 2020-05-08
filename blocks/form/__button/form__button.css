@@ -14,3 +14,9 @@
   background: rgba(0, 0, 0, 0.8);
   cursor: url(../../../images/popup/hand_icon.svg), pointer;
 }
+
+@media (max-width: 543px) {
+  .form__button {
+    width: 236px;
+  }
+}

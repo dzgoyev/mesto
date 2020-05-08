@@ -9,3 +9,10 @@
   opacity: 0.6;
   cursor: url(../../../images/popup/hand_icon.svg), pointer;
 }
+
+@media (max-width: 543px) {
+  .form__close-toggle {
+    top: -50px;
+    left: 257px;
+  }
+}

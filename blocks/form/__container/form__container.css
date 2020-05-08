@@ -2,3 +2,9 @@
   padding-top: 34px;
   padding-bottom: 33px;
 }
+
+@media (max-width: 543px) {
+  .form__container {
+    padding-top: 25px;
+  }
+}

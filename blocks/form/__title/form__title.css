@@ -6,3 +6,10 @@
   /* padding-bottom: 54px; */
   margin-bottom: 54px;
 }
+
+@media (max-width: 543px) {
+  .form__title {
+    font-size: 18px;
+    margin-bottom: 26px;
+  }
+}
