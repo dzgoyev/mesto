@@ -2,7 +2,7 @@
 @import url(./__item/gallery__item.css);
 @import url(./__caption/gallery__caption.css);
 @import url(./__title/gallery__title.css);
-@import url(./__whishlist/gallery__whishlist.css);
+@import url(./__like/gallery__like.css);
 
 .gallery {
   display: grid;
