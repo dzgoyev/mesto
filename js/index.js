@@ -40,11 +40,7 @@ function formSubmitHandler(evt) {
   profileJob.textContent = jobInput.value;
 }
 
-function formSubmit() {
-  popup.classList.remove("popup_opened");
-}
-
-submit.addEventListener("click", formSubmit);
+submit.addEventListener("click", popupClose);
 buttonEdit.addEventListener("click", popupOpen);
 toggle.addEventListener("click", popupClose);
 formElement.addEventListener("submit", formSubmitHandler);
