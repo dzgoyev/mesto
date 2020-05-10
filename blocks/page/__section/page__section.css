@@ -1,5 +1,11 @@
 .page__section {
   max-width: 882px;
   margin: auto;
-  min-width: 320px;
+  min-width: 300px;
+}
+
+@media (max-width: 920px) {
+  .page__section {
+    max-width: 90%;
+  }
 }

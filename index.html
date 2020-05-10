@@ -22,9 +22,8 @@
           alt="Фото Кусто"
         />
         <div class="profile__description">
-          <!-- <a href="#" class="profile__link"> Если вдруг это ссылка-->
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <!-- </a> -->
+
           <button type="button" class="profile__button-edit"></button>
 
           <p class="profile__job">Исследователь океана</p>
@@ -44,9 +43,6 @@
           <figcaption class="gallery__caption">
             <h3 class="gallery__title">Карачеево</h3>
             <button class="gallery__like" type="button"></button>
-            <!-- <a href="#" class="gallery__whishlist">
-              <img src="./images/gallery/heart.svg" alt="whishlist" />
-            </a> -->
           </figcaption>
         </figure>
 
@@ -118,38 +114,38 @@
     <!-- Popup -->
     <div class="popup">
       <div class="popup__container">
-        <!-- Form -->
-        <section class="form">
-          <div class="form__close-toggle">
-            <img
-              src="../mesto/images/popup/close_icon.svg"
-              alt="Закрыть окно"
-              class="form__close-icon"
-            />
-          </div>
-          <div class="form__container">
-            <form
-              class="form__register"
-              name="form__register"
-              action="#"
-              method="POST"
-            >
-              <div class="form__main-container popup__item">
-                <fieldset class="form__input-container">
-                  <legend>
-                    <h2 class="form__title">Редактировать профиль</h2>
-                  </legend>
-                  <input type="text" class="form__item" name="name" />
-                  <div class="form__line"></div>
-                  <input type="text" class="form__item" name="job" />
-                  <div class="form__line"></div>
+        <span class="popup__close-toggle"></span>
 
-                  <input type="submit" class="form__button" value="Сохранить" />
-                </fieldset>
-              </div>
-            </form>
-          </div>
-        </section>
+        <form
+          class="popup__form"
+          name="form__register"
+          action="#"
+          method="POST"
+        >
+          <fieldset class="popup__form-input">
+            <legend>
+              <h2 class="popup__title popup__item">Редактировать профиль</h2>
+            </legend>
+            <input
+              type="text"
+              class="popup__form-item popup__item popup__item_name"
+              name="name"
+            />
+
+            <input
+              type="text"
+              class="popup__form-item popup__item popup__item_job"
+              name="job"
+            />
+
+            <input
+              type="submit"
+              class="popup__form-button popup__item"
+              value="Сохранить"
+            />
+          </fieldset>
+          <!-- </div> -->
+        </form>
       </div>
     </div>
 
