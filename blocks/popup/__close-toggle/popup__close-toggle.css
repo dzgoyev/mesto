@@ -5,8 +5,11 @@
   background-image: url(../../../images/popup/close_icon.svg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: transparent;
+  border: 0;
   width: 60px;
   height: 60px;
+  outline: none;
 }
 
 .popup__close-toggle:hover {
@@ -26,9 +29,3 @@
     left: 220px;
   }
 }
-
-/* @media (max-width: 311px) {
-  .popup__close-toggle {
-    left: 229px;
-  }
-}  */
