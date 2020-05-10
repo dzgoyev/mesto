@@ -12,3 +12,16 @@
     margin-bottom: 26px;
   }
 }
+
+@media (orientation: landscape) {
+  .popup__title {
+    margin-top: 17px;
+    margin-bottom: 48px;
+  }
+}
+
+@media (orientation: landscape) and (min-height: 320px) {
+  .popup__title {
+    margin-bottom: 25px;
+  }
+}

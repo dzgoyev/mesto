@@ -20,3 +20,9 @@
     width: 236px;
   }
 }
+
+@media (orientation: landscape) and (min-height: 320px) {
+  .popup__form-button {
+    margin-top: 23px;
+  }
+}
