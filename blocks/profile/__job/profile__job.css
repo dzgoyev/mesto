@@ -7,7 +7,7 @@
   margin: 0;
 }
 
-@media (max-width: 717px) {
+@media (max-width: 768px) {
   .profile__job {
     line-height: 17px;
     text-align: center;
@@ -16,7 +16,14 @@
   }
 }
 
-@media (max-width: 652px) {
+/* @media (max-width: 652px) {
+  .profile__job {
+    font-size: 14px;
+    margin-top: -3px;
+  }
+} */
+
+@media (max-width: 424px) {
   .profile__job {
     font-size: 14px;
     margin-top: -3px;

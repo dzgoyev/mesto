@@ -16,7 +16,15 @@
   cursor: url(../../../images/popup/hand_icon.svg), pointer;
 }
 
-@media (max-width: 652px) {
+/* @media (max-width: 652px) {
+  .profile__button-edit {
+    width: 18px;
+    height: 18px;
+    margin-left: 4px;
+  }
+} */
+
+@media (max-width: 424px) {
   .profile__button-edit {
     width: 18px;
     height: 18px;

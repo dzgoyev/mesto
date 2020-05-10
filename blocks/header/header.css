@@ -4,7 +4,13 @@
   border-bottom: 1px solid #545454;
 }
 
-@media (max-width: 652px) {
+/* @media (max-width: 652px) {
+  .header {
+    min-height: 56px;
+  }
+} */
+
+@media (max-width: 424px) {
   .header {
     min-height: 56px;
   }

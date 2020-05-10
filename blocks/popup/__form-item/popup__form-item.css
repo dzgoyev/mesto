@@ -8,6 +8,7 @@
   background: #fff;
   border-color: #000;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-left: 34px;
 }
 
 @media (max-width: 543px) {
@@ -16,6 +17,11 @@
   }
 }
 
+@media (max-width: 320px) {
+  .popup__form-item {
+    margin-left: 22px;
+  }
+}
 .popup__form-item:nth-of-type(2) {
   margin-top: 29px;
 }
