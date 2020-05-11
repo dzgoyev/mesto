@@ -6,8 +6,8 @@ const submit = popup.querySelector(".popup__form-button"); //Получаем к
 const formContainer = popup.querySelector(".popup__form-container");
 const formElement = document.querySelector(".popup__form"); // Находим форму в DOM
 /*Поля ввода - вывода*/
-let nameInput = popup.querySelector(".popup__item_name"); //Поле имени в форме
-let jobInput = popup.querySelector(".popup__item_job"); // Поле работы в форме
+let nameInput = popup.querySelector(".popup__form-item_name"); //Поле имени в форме
+let jobInput = popup.querySelector(".popup__form-item_job"); // Поле работы в форме
 let profileName = document.querySelector(".profile__name"); //Поле имени на странице
 let profileJob = document.querySelector(".profile__job"); //Поле работы на странице
 
