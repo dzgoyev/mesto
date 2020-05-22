@@ -1,46 +1,76 @@
-const buttonEdit = document.querySelector(".profile__button-edit"); //получаем кнопку редактирования
-const popup = document.querySelector(".popup"); //Находим popup
-const popupOpened = popup.querySelector(".popup_opened"); //Модификатор закрытия-открытия
-const toggle = popup.querySelector(".popup__close-toggle"); //Кнопка закрытия
-const submit = popup.querySelector(".popup__form-button"); //Получаем кнопку сохранения в форме
-const formContainer = popup.querySelector(".popup__form-container");
-const formElement = document.querySelector(".popup__form"); // Находим форму в DOM
-/*Поля ввода - вывода*/
-let nameInput = popup.querySelector(".popup__form-item_name"); //Поле имени в форме
-let jobInput = popup.querySelector(".popup__form-item_job"); // Поле работы в форме
-let profileName = document.querySelector(".profile__name"); //Поле имени на странице
-let profileJob = document.querySelector(".profile__job"); //Поле работы на странице
+// Popups
+const popup = document.querySelector('.popup'); //popup редактирования проофиля
+const popupAdd = document.querySelector('.popup__add'); // popup добавления карточек
+const submit = popup.querySelector('.popup__form-button'); //Кнопка сохранения в форме редактирования профиля
 
-function popupOpen() {
-  //Открыть окно и заполнить поля формы из profile
-  popup.classList.add("popup_opened");
+// Кнопки
+const buttonEdit = document.querySelector('.profile__button-edit'); //получаем кнопку редактирования профиля
+const buttonAdd = document.querySelector('.profile__button-add'); //Кнопка открытия формы добавления картинок
+const submitAdd = popupAdd.querySelector('.popup__item_add'); //Кнопка сохранения в форме добавления картинок
+const toggle = document.querySelectorAll('.popup__close-toggle'); //Кнопка-крест закрытия
+
+// Формы
+const formElement = document.querySelector('.popup__form'); // Форма редактирования профиля
+const formElementAdd = document.querySelector('.popup__form_add'); // Форма добавления картинок
+
+// Модификаторы true-false
+const popupOpened = popup.querySelector('.popup_opened'); //Модификатор закрытия-открытия popup
+
+// Инпуты и поля вывода профиля
+let nameInput = popup.querySelector('.popup__form-item_name'); //Поле имени в форме регистрации профиля
+let jobInput = popup.querySelector('.popup__form-item_job'); // Поле работы в форме регистрации профиля
+let profileName = document.querySelector('.profile__name'); //Элемент имени на странице
+let profileJob = document.querySelector('.profile__job'); //Элемент работы на странице
+
+// Инпуты и поля добавления картинок
+let gallery = document.querySelector('.gallery'); //вся галлерея - контейнер
+let namePlace = popupAdd.querySelector('.popup__form-item_place'); //Поле названия места в форме
+let linkImage = popupAdd.querySelector('.popup__form-item_link-img'); //Поле вставки ссылки в форме
+let galleryItem = document.querySelector('.gallery__item'); //сюда попадает  картинка после добавления с формы
+let galleryName = document.querySelector('.gallery__title'); //сюда попадает название места после добавления с формы
+let like = gallery.querySelector('.gallery__like'); // лайк для карточки
+
+// Функции
+// Открыть попап картинок
+function popupOpenAdd() {
+  popupAdd.classList.add('popup_opened');
+}
+
+// Открыть попап редактирования профиля и заполнить инпуты
+function popupOpenEdit() {
+  popup.classList.add('popup_opened');
   nameInput.value = profileName.innerHTML;
   jobInput.value = profileJob.innerHTML;
 }
-//Закрытие окна
+
+//Закрытие форм при клике на крест
 function popupClose() {
-  popup.classList.remove("popup_opened");
+  popup.classList.remove('popup_opened');
+  popupAdd.classList.remove('popup_opened');
 }
 
+// Перехватываем событие на кнопку в профиле
 function formSubmitHandler(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
-
-  // Находим поля формы в DOM
-  // Воспользуйтесь инструментом .querySelector()
-  // Воспользуйтесь инструментом .querySelector()
-  // Получите значение полей из свойства value
-  // Выберите элементы, куда должны быть вставлены значения полей
-  // Вставьте новые значения с помощью textContent
-
-  // document.querySelector(".profile__name").textContent = nameInput.value;
-  // document.querySelector(".profile__job").textContent = jobInput.value;
+  evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
 }
 
-submit.addEventListener("click", popupClose);
-buttonEdit.addEventListener("click", popupOpen);
-toggle.addEventListener("click", popupClose);
-formElement.addEventListener("submit", formSubmitHandler);
+// Перехватываем событие на кнопку в форме редактирвования картинок
+function formSubmitHandlerAdd(evt) {
+  evt.preventDefault();
+}
+
+// Выбираем нужны кнопку крест для закрытия окна
+toggle.forEach(function (item) {
+  item.addEventListener('click', popupClose);
+});
+
+// Слушатели
+submit.addEventListener('click', popupClose); //Сохранить и закрыть в форме профиля
+submitAdd.addEventListener('click', popupClose); //Сохранить и закрыть в форме картинок
+buttonEdit.addEventListener('click', popupOpenEdit); //Кнопка открытия редактирования профиля
+buttonAdd.addEventListener('click', popupOpenAdd); //Кнопка открытия добавления картинок
+
+formElement.addEventListener('submit', formSubmitHandler); //отправка формы редактирования профиля
+formElementAdd.addEventListener('submit', formSubmitHandlerAdd); //отправка формы добавления картинок

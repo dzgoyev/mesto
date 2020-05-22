@@ -6,6 +6,8 @@
   border-radius: 10px;
   width: 430px;
   position: relative;
+
+  /*  */
 }
 
 @media (max-width: 543px) {
