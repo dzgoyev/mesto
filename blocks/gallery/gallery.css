@@ -3,6 +3,7 @@
 @import url(./__caption/gallery__caption.css);
 @import url(./__title/gallery__title.css);
 @import url(./__like/gallery__like.css);
+@import url(./__trash/gallery__trash.css);
 
 .gallery {
   display: grid;

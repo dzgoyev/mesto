@@ -34,19 +34,21 @@
 
       <!-- Gallery -->
       <section class="gallery">
-        <figure class="gallery__container">
+        <!-- <figure class="gallery__container">
+          <button class="gallery__trash" type="button"></button>
           <img
             src="./images/gallery/karachaevo.jpg"
             alt="Карачаево"
             class="gallery__item"
           />
+
           <figcaption class="gallery__caption">
             <h3 class="gallery__title">Карачеево</h3>
             <button class="gallery__like" type="button"></button>
           </figcaption>
         </figure>
 
-        <figure class="gallery__container">
+         <figure class="gallery__container">
           <img
             src="./images/gallery/elbrus.jpg"
             alt="Гора Эльбрус"
@@ -104,7 +106,7 @@
             <h3 class="gallery__title">Новороссийск</h3>
             <button class="gallery__like" type="button"></button>
           </figcaption>
-        </figure>
+        </figure> -->
       </section>
     </main>
 
@@ -186,6 +188,16 @@
       </div>
     </div>
     <!-- end popup add -->
+    <template id="gallery-template">
+      <figure class="gallery__container">
+        <button class="gallery__trash" type="button"></button>
+        <img src="" alt="" class="gallery__item" />
+        <figcaption class="gallery__caption">
+          <h3 class="gallery__title"></h3>
+          <button class="gallery__like" type="button"></button>
+        </figcaption>
+      </figure>
+    </template>
 
     <script src="./js/index.js"></script>
   </body>

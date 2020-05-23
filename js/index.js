@@ -23,7 +23,9 @@ let profileName = document.querySelector('.profile__name'); //Элемент и�
 let profileJob = document.querySelector('.profile__job'); //Элемент работы на странице
 
 // Инпуты и поля добавления картинок
-let gallery = document.querySelector('.gallery'); //вся галлерея - контейнер
+let container = document.querySelector('.main'); //основной контейнер
+
+let gallery = container.querySelector('.gallery'); //вся галлерея - контейнер куда добавляются карточки
 let namePlace = popupAdd.querySelector('.popup__form-item_place'); //Поле названия места в форме
 let linkImage = popupAdd.querySelector('.popup__form-item_link-img'); //Поле вставки ссылки в форме
 let galleryItem = document.querySelector('.gallery__item'); //сюда попадает  картинка после добавления с формы
@@ -31,6 +33,36 @@ let galleryName = document.querySelector('.gallery__title'); //сюда попа
 let like = gallery.querySelector('.gallery__like'); // лайк для карточки
 
 // Функции
+//Начало работы над блоков добавления картинок
+// Разметка
+function addPlace(linkImageValue, namePlaceValue) {
+  const galleryTemplate = document.querySelector('#gallery-template').content;
+  const galleryElement = galleryTemplate.cloneNode(true);
+  galleryElement.querySelector('.gallery__item').src = linkImageValue;
+  galleryElement.querySelector('.gallery__title').textContent = namePlaceValue;
+  galleryElement
+    .querySelector('.gallery__like')
+    .addEventListener('click', function (evt) {
+      evt.target.classList.toggle('gallery__like_active');
+    });
+
+  gallery.prepend(galleryElement);
+
+  let galleryContainer = gallery.querySelector('.gallery__container'); // контейнер куда будут добавляться картинки и имя места
+  let trash = document.querySelector('.gallery__trash'); //корзина
+  trash.addEventListener('click', function () {
+    galleryContainer.remove();
+  });
+}
+
+submitAdd.addEventListener('click', function () {
+  addPlace(linkImage.value, namePlace.value);
+  linkImage.value = '';
+  namePlace.value = '';
+});
+
+//Конец блока работы над галлерей добавления
+
 // Открыть попап картинок
 function popupOpenAdd() {
   popupAdd.classList.add('popup_opened');

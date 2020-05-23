@@ -1,0 +1,21 @@
+.gallery__trash {
+  width: 18px;
+  height: 19px;
+  background-image: url(../../../images/gallery/trash.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 18px;
+  margin-right: 15px;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.gallery__trash:hover {
+  opacity: 0.6;
+}
