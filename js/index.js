@@ -32,8 +32,43 @@ let galleryItem = document.querySelector('.gallery__item'); //сюда попа�
 let galleryName = document.querySelector('.gallery__title'); //сюда попадает название места после добавления с формы
 let like = gallery.querySelector('.gallery__like'); // лайк для карточки
 
+// Изначальный массив
+// -----------------
+const initialCards = [
+  {
+    name: 'Архыз',
+    link:
+      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+  },
+  {
+    name: 'Челябинская область',
+    link:
+      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+  },
+  {
+    name: 'Иваново',
+    link:
+      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+  },
+  {
+    name: 'Камчатка',
+    link:
+      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+  },
+  {
+    name: 'Холмогорский район',
+    link:
+      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+  },
+  {
+    name: 'Байкал',
+    link:
+      'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+  },
+];
+
 // Функции
-//Начало работы над блоков добавления картинок
+//Начало работы над блоком добавления картинок
 // Разметка
 function addPlace(linkImageValue, namePlaceValue) {
   const galleryTemplate = document.querySelector('#gallery-template').content;
@@ -54,6 +89,15 @@ function addPlace(linkImageValue, namePlaceValue) {
     galleryContainer.remove();
   });
 }
+//Функция добавления картинок - изначальный массив попадает в нее и потом передается в addPlace.
+function CardAdd() {
+  initialCards.forEach(function (item) {
+    const name = item.name;
+    const link = item.link;
+    addPlace(link, name);
+  });
+}
+CardAdd();
 
 submitAdd.addEventListener('click', function () {
   addPlace(linkImage.value, namePlace.value);
@@ -106,3 +150,36 @@ buttonAdd.addEventListener('click', popupOpenAdd); //Кнопка открыти
 
 formElement.addEventListener('submit', formSubmitHandler); //отправка формы редактирования профиля
 formElementAdd.addEventListener('submit', formSubmitHandlerAdd); //отправка формы добавления картинок
+
+// Это все можно удалить - перебор в шаблоне
+// function addPlace() {
+//   const galleryTemplate = document.querySelector('#gallery-template').content;
+//   initialCards.forEach(function (item) {
+//     let galleryElement = galleryTemplate.cloneNode(true);
+//     galleryElement.querySelector('.gallery__item').src = item.link;
+//     galleryElement.querySelector('.gallery__title').textContent = item.name;
+
+//     galleryElement
+//       .querySelector('.gallery__like')
+//       .addEventListener('click', function (evt) {
+//         evt.target.classList.toggle('gallery__like_active');
+//       });
+
+//     gallery.prepend(galleryElement);
+
+//     let galleryContainer = gallery.querySelector('.gallery__container'); // контейнер куда будут добавляться картинки и имя места
+//     let trash = document.querySelector('.gallery__trash'); //корзина
+//     trash.addEventListener('click', function () {
+//       galleryContainer.remove();
+//     });
+
+//   });
+// }
+
+// addPlace();
+
+// submitAdd.addEventListener('click', function () {
+//   initialCards.push(linkImage.value, namePlace.value);
+//   linkImage.value = '';
+//   namePlace.value = '';
+// });
