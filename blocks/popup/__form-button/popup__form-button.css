@@ -20,3 +20,14 @@
     width: 236px;
   }
 }
+
+@media (max-width: 375px) {
+  .popup__form-button {
+    width: 200px;
+    height: 42px;
+    margin: 0 auto;
+    margin-top: 31px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

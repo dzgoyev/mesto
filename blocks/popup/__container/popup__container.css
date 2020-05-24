@@ -17,8 +17,16 @@
   }
 }
 
-@media (max-width: 320px) {
+/* @media (max-width: 320px) {
   .popup__container {
     max-width: 90%;
+  }
+} */
+
+@media (max-width: 375px) {
+  .popup__container {
+    margin-top: 63px;
+    max-width: 240px;
+    min-height: 258px;
   }
 }

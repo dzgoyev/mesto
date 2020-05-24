@@ -23,11 +23,11 @@ let profileName = document.querySelector('.profile__name'); //Элемент и�
 let profileJob = document.querySelector('.profile__job'); //Элемент работы на странице
 
 // Инпуты и поля добавления картинок
-let container = document.querySelector('.main'); //основной контейнер
+let container = document.querySelector('.main'); //основной контейнер картинок
 
 let gallery = container.querySelector('.gallery'); //вся галлерея - контейнер куда добавляются карточки
-let namePlace = popupAdd.querySelector('.popup__form-item_place'); //Поле названия места в форме
-let linkImage = popupAdd.querySelector('.popup__form-item_link-img'); //Поле вставки ссылки в форме
+let namePlace = popupAdd.querySelector('.popup__form-item_place'); //Поле ввода места в форме
+let linkImage = popupAdd.querySelector('.popup__form-item_link-img'); //Поле ввода ссылки в форме
 let galleryItem = document.querySelector('.gallery__item'); //сюда попадает  картинка после добавления с формы
 let galleryName = document.querySelector('.gallery__title'); //сюда попадает название места после добавления с формы
 let like = gallery.querySelector('.gallery__like'); // лайк для карточки
@@ -69,22 +69,23 @@ const initialCards = [
 
 // Функции
 //Начало работы над блоком добавления картинок
-// Разметка
 function addPlace(linkImageValue, namePlaceValue) {
   const galleryTemplate = document.querySelector('#gallery-template').content;
   const galleryElement = galleryTemplate.cloneNode(true);
   galleryElement.querySelector('.gallery__item').src = linkImageValue;
   galleryElement.querySelector('.gallery__title').textContent = namePlaceValue;
+  galleryElement.querySelector('.gallery__item').alt = namePlaceValue;
+  //Like
   galleryElement
     .querySelector('.gallery__like')
     .addEventListener('click', function (evt) {
       evt.target.classList.toggle('gallery__like_active');
     });
-
+  //Добавляем новый элемент в начало галлереи
   gallery.prepend(galleryElement);
-
-  let galleryContainer = gallery.querySelector('.gallery__container'); // контейнер куда будут добавляться картинки и имя места
-  let trash = document.querySelector('.gallery__trash'); //корзина
+  const galleryContainer = gallery.querySelector('.gallery__container'); // контейнер куда будут добавляться картинки
+  // Корзина - удаляем карточки
+  const trash = document.querySelector('.gallery__trash');
   trash.addEventListener('click', function () {
     galleryContainer.remove();
   });
@@ -99,13 +100,7 @@ function CardAdd() {
 }
 CardAdd();
 
-submitAdd.addEventListener('click', function () {
-  addPlace(linkImage.value, namePlace.value);
-  linkImage.value = '';
-  namePlace.value = '';
-});
-
-//Конец блока работы над галлерей добавления
+//Конец блока работы над галлерей изобряжений
 
 // Открыть попап картинок
 function popupOpenAdd() {
@@ -132,12 +127,24 @@ function formSubmitHandler(evt) {
   profileJob.textContent = jobInput.value;
 }
 
-// Перехватываем событие на кнопку в форме редактирвования картинок
+// Перехватываем событие на кнопку в форме редактирвования картинок и добавляем картинку на сайт через submit
 function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
+  let name = namePlace.value;
+  let link = linkImage.value;
+  addPlace(link, name); //передеаем в функцию шаблон добавления картинок
+  //Обнуляем значения полей ввода в форме
+  namePlace.value = '';
+  linkImage.value = '';
 }
 
-// Выбираем нужны кнопку крест для закрытия окна
+// submitAdd.addEventListener('click', function () {
+//   addPlace(linkImage.value, namePlace.value);
+//   linkImage.value = '';
+//   namePlace.value = '';
+// });
+
+// Выбираем нужный кнопку крест для закрытия окна
 toggle.forEach(function (item) {
   item.addEventListener('click', popupClose);
 });
@@ -150,36 +157,3 @@ buttonAdd.addEventListener('click', popupOpenAdd); //Кнопка открыти
 
 formElement.addEventListener('submit', formSubmitHandler); //отправка формы редактирования профиля
 formElementAdd.addEventListener('submit', formSubmitHandlerAdd); //отправка формы добавления картинок
-
-// Это все можно удалить - перебор в шаблоне
-// function addPlace() {
-//   const galleryTemplate = document.querySelector('#gallery-template').content;
-//   initialCards.forEach(function (item) {
-//     let galleryElement = galleryTemplate.cloneNode(true);
-//     galleryElement.querySelector('.gallery__item').src = item.link;
-//     galleryElement.querySelector('.gallery__title').textContent = item.name;
-
-//     galleryElement
-//       .querySelector('.gallery__like')
-//       .addEventListener('click', function (evt) {
-//         evt.target.classList.toggle('gallery__like_active');
-//       });
-
-//     gallery.prepend(galleryElement);
-
-//     let galleryContainer = gallery.querySelector('.gallery__container'); // контейнер куда будут добавляться картинки и имя места
-//     let trash = document.querySelector('.gallery__trash'); //корзина
-//     trash.addEventListener('click', function () {
-//       galleryContainer.remove();
-//     });
-
-//   });
-// }
-
-// addPlace();
-
-// submitAdd.addEventListener('click', function () {
-//   initialCards.push(linkImage.value, namePlace.value);
-//   linkImage.value = '';
-//   namePlace.value = '';
-// });
