@@ -97,6 +97,7 @@ function addPlace(linkImageValue, namePlaceValue) {
   galleryItem.addEventListener('click', function () {
     popupOpenImg();
     popupImageLarge.src = linkImageValue;
+    popupImageLarge.alt = namePlaceValue;
     popupImageCaption.textContent = namePlaceValue;
   });
 }

@@ -34,7 +34,7 @@
 
       <!-- Gallery -->
       <section class="gallery">
-        <!-- Шаблон -->
+        <!-- Template html -->
         <!-- <figure class="gallery__container">
           <button class="gallery__trash" type="button"></button>
           <img
@@ -108,14 +108,16 @@
               type="text"
               class="popup__form-item popup__form-item_place"
               name="name_card"
-              placeholder="Название"
+              placeholder="Название (обязательное поле)"
+              required
             />
 
             <input
-              type="text"
+              type="url"
               class="popup__form-item popup__form-item_link-img"
               name="link_img"
-              placeholder="Ссылка на картинку"
+              placeholder="Ссылка на картинку (обязатальное поле)"
+              required
             />
 
             <button

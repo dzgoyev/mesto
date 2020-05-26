@@ -28,6 +28,6 @@
   .profile__button-edit {
     width: 18px;
     height: 18px;
-    margin-left: 4px;
+    /* margin-left: 4px; */
   }
 }

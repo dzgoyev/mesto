@@ -1,3 +1,15 @@
 .profile__description {
-  max-width: 100%;
+  /* max-width: 100%; */
+
+  /*  */
+  display: flex;
+  max-width: 336px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .profile__description {
+    justify-content: center;
+  }
 }
