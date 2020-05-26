@@ -8,6 +8,11 @@
 @import url(./__form-button/popup__form-button.css);
 @import url(./_opened/popup_opened.css);
 @import url(./__form-input/popup__form-input.css);
+@import url(./__close-toggle/_img/popup__close-toggle_img.css);
+@import url(./__container-image/popup__container-image.css);
+@import url(./__image-src/popup__image-src.css);
+@import url(./__images/popup__images.css);
+@import url(./__caption/popup__caption.css);
 
 .popup {
   position: fixed;
@@ -16,7 +21,10 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
 }

@@ -2,8 +2,6 @@
 
 .gallery__like {
   margin-right: 21px;
-  /* position: relative; */
-  /* top: 4px; */
   margin-top: 4px;
   outline: 0;
   background-image: url(../../../images/gallery/heart.svg);

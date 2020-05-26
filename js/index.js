@@ -1,39 +1,4 @@
-// Popups
-const popup = document.querySelector('.popup'); //popup редактирования проофиля
-const popupAdd = document.querySelector('.popup__add'); // popup добавления карточек
-const submit = popup.querySelector('.popup__form-button'); //Кнопка сохранения в форме редактирования профиля
-
-// Кнопки
-const buttonEdit = document.querySelector('.profile__button-edit'); //получаем кнопку редактирования профиля
-const buttonAdd = document.querySelector('.profile__button-add'); //Кнопка открытия формы добавления картинок
-const submitAdd = popupAdd.querySelector('.popup__item_add'); //Кнопка сохранения в форме добавления картинок
-const toggle = document.querySelectorAll('.popup__close-toggle'); //Кнопка-крест закрытия
-
-// Формы
-const formElement = document.querySelector('.popup__form'); // Форма редактирования профиля
-const formElementAdd = document.querySelector('.popup__form_add'); // Форма добавления картинок
-
-// Модификаторы true-false
-const popupOpened = popup.querySelector('.popup_opened'); //Модификатор закрытия-открытия popup
-
-// Инпуты и поля вывода профиля
-let nameInput = popup.querySelector('.popup__form-item_name'); //Поле имени в форме регистрации профиля
-let jobInput = popup.querySelector('.popup__form-item_job'); // Поле работы в форме регистрации профиля
-let profileName = document.querySelector('.profile__name'); //Элемент имени на странице
-let profileJob = document.querySelector('.profile__job'); //Элемент работы на странице
-
-// Инпуты и поля добавления картинок
-let container = document.querySelector('.main'); //основной контейнер картинок
-
-let gallery = container.querySelector('.gallery'); //вся галлерея - контейнер куда добавляются карточки
-let namePlace = popupAdd.querySelector('.popup__form-item_place'); //Поле ввода места в форме
-let linkImage = popupAdd.querySelector('.popup__form-item_link-img'); //Поле ввода ссылки в форме
-let galleryItem = document.querySelector('.gallery__item'); //сюда попадает  картинка после добавления с формы
-let galleryName = document.querySelector('.gallery__title'); //сюда попадает название места после добавления с формы
-let like = gallery.querySelector('.gallery__like'); // лайк для карточки
-
-// Изначальный массив
-// -----------------
+//initial array
 const initialCards = [
   {
     name: 'Архыз',
@@ -67,8 +32,41 @@ const initialCards = [
   },
 ];
 
-// Функции
-//Начало работы над блоком добавления картинок
+// Popups
+const popup = document.querySelector('.popup'); //popup profile (other be its elements)
+const popupAdd = document.querySelector('.popup__add'); // popup for adding a card
+const popupImages = document.querySelector('.popup__images'); // popup for large images
+
+// buttons
+const submit = popup.querySelector('.popup__form-button'); //button in the profile form
+const buttonEdit = document.querySelector('.profile__button-edit'); //save button in the profile form edit
+const buttonAdd = document.querySelector('.profile__button-add'); //button in the adding form
+const submitAdd = popupAdd.querySelector('.popup__item_add'); //save button in the form add images
+const toggle = document.querySelectorAll('.popup__close-toggle'); //close button - cross
+
+// Forms
+const formElement = document.querySelector('.popup__form'); // profile editing form
+const formElementAdd = document.querySelector('.popup__form_add'); // form for add images
+
+// Modifier
+const popupOpened = popup.querySelector('.popup_opened'); //open and close modifier popup
+
+// Inputs and output fileds profile
+let nameInput = popup.querySelector('.popup__form-item_name'); //name field in the profile registration
+let jobInput = popup.querySelector('.popup__form-item_job'); // name job in the profile registration
+let profileName = document.querySelector('.profile__name'); //name element on the page
+let profileJob = document.querySelector('.profile__job'); //name job jn the page
+
+// Inputs and output fields add images
+let container = document.querySelector('.main'); //main container
+let gallery = container.querySelector('.gallery'); //all gallery
+let namePlace = popupAdd.querySelector('.popup__form-item_place'); //name place in the form add
+let linkImage = popupAdd.querySelector('.popup__form-item_link-img'); //link img in the form add
+let galleryItem = container.querySelector('.gallery__item'); //images element on the page
+let galleryName = container.querySelector('.gallery__title'); //place name element on the page
+let like = gallery.querySelector('.gallery__like'); // like for cards
+
+//The function on creating cards
 function addPlace(linkImageValue, namePlaceValue) {
   const galleryTemplate = document.querySelector('#gallery-template').content;
   const galleryElement = galleryTemplate.cloneNode(true);
@@ -81,16 +79,29 @@ function addPlace(linkImageValue, namePlaceValue) {
     .addEventListener('click', function (evt) {
       evt.target.classList.toggle('gallery__like_active');
     });
-  //Добавляем новый элемент в начало галлереи
+  //Add new element to the begining
   gallery.prepend(galleryElement);
-  const galleryContainer = gallery.querySelector('.gallery__container'); // контейнер куда будут добавляться картинки
-  // Корзина - удаляем карточки
+  const galleryContainer = gallery.querySelector('.gallery__container'); // container for add cards
+  // Trash for cards
   const trash = document.querySelector('.gallery__trash');
   trash.addEventListener('click', function () {
     galleryContainer.remove();
   });
+
+  const galleryItem = document.querySelector('.gallery__item'); //place image after add from the form
+
+  //Block function display large images
+  const popupImageLarge = document.querySelector('.popup__image-src'); // src image
+  const popupImageCaption = document.querySelector('.popup__caption'); //caption for large images
+
+  galleryItem.addEventListener('click', function () {
+    popupOpenImg();
+    popupImageLarge.src = linkImageValue;
+    popupImageCaption.textContent = namePlaceValue;
+  });
 }
-//Функция добавления картинок - изначальный массив попадает в нее и потом передается в addPlace.
+
+//Function images add - the initial array go to it and then to addPlace
 function CardAdd() {
   initialCards.forEach(function (item) {
     const name = item.name;
@@ -98,62 +109,59 @@ function CardAdd() {
     addPlace(link, name);
   });
 }
-CardAdd();
+CardAdd(); //function call
 
-//Конец блока работы над галлерей изобряжений
+//End block gallery images
 
-// Открыть попап картинок
+// Open the popup form adding images
 function popupOpenAdd() {
   popupAdd.classList.add('popup_opened');
 }
+//Open a large image popup
+function popupOpenImg() {
+  popupImages.classList.add('popup_opened');
+}
 
-// Открыть попап редактирования профиля и заполнить инпуты
+// Open the profile editing popup and fill in inputs
 function popupOpenEdit() {
   popup.classList.add('popup_opened');
   nameInput.value = profileName.innerHTML;
   jobInput.value = profileJob.innerHTML;
 }
 
-//Закрытие форм при клике на крест
+//Close form on clicking on the cross - list necessary popups
 function popupClose() {
   popup.classList.remove('popup_opened');
   popupAdd.classList.remove('popup_opened');
+  popupImages.classList.remove('popup_opened');
 }
 
-// Перехватываем событие на кнопку в профиле
+// Event on the button in the profile
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
 }
 
-// Перехватываем событие на кнопку в форме редактирвования картинок и добавляем картинку на сайт через submit
+// Event on the button images editing and image add via submit
 function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
   let name = namePlace.value;
   let link = linkImage.value;
-  addPlace(link, name); //передеаем в функцию шаблон добавления картинок
-  //Обнуляем значения полей ввода в форме
+  addPlace(link, name);
   namePlace.value = '';
   linkImage.value = '';
 }
 
-// submitAdd.addEventListener('click', function () {
-//   addPlace(linkImage.value, namePlace.value);
-//   linkImage.value = '';
-//   namePlace.value = '';
-// });
-
-// Выбираем нужный кнопку крест для закрытия окна
+// Select the proprite cross button to close
 toggle.forEach(function (item) {
   item.addEventListener('click', popupClose);
 });
 
-// Слушатели
-submit.addEventListener('click', popupClose); //Сохранить и закрыть в форме профиля
-submitAdd.addEventListener('click', popupClose); //Сохранить и закрыть в форме картинок
-buttonEdit.addEventListener('click', popupOpenEdit); //Кнопка открытия редактирования профиля
-buttonAdd.addEventListener('click', popupOpenAdd); //Кнопка открытия добавления картинок
-
-formElement.addEventListener('submit', formSubmitHandler); //отправка формы редактирования профиля
-formElementAdd.addEventListener('submit', formSubmitHandlerAdd); //отправка формы добавления картинок
+// Listeners
+submit.addEventListener('click', popupClose); //save and close in the profile form
+submitAdd.addEventListener('click', popupClose); //save and close in the profile image
+buttonEdit.addEventListener('click', popupOpenEdit); //button for opening profile editing
+buttonAdd.addEventListener('click', popupOpenAdd); //button for open add images
+formElement.addEventListener('submit', formSubmitHandler); //sending a profile editing form
+formElementAdd.addEventListener('submit', formSubmitHandlerAdd); //sending a form adding images
