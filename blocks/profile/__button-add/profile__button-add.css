@@ -14,7 +14,7 @@
 
 .profile__button-add:hover {
   opacity: 0.6;
-  cursor: url(../../../images/popup/hand_icon.svg), pointer;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

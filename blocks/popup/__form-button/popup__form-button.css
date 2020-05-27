@@ -12,7 +12,7 @@
 
 .popup__form-button:hover {
   background: rgba(0, 0, 0, 0.8);
-  cursor: url(../../../images/popup/hand_icon.svg), pointer;
+  cursor: pointer;
 }
 
 @media (max-width: 543px) {
