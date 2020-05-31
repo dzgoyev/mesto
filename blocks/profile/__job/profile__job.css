@@ -5,6 +5,10 @@
   font-style: normal;
   font-weight: normal;
   margin: 0;
+  max-width: 295px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 768px) {
@@ -27,5 +31,6 @@
   .profile__job {
     font-size: 14px;
     margin-top: -3px;
+    max-width: 201px;
   }
 }
