@@ -129,29 +129,21 @@ if (popupCloseButtons != null) {
   }
 }
 
-// ------ закрытие на черном фоне (через for понятнее)
+// ------ закрытие на черном фоне 
 const itemCloseClickOut = Array.from(document.querySelectorAll('.popup'));
-for (let i = 0; i < itemCloseClickOut.length; i++) {
-  itemCloseClickOut[i].addEventListener('click', (e) => {
-    if(e.target.className != 'popup') {
+document.addEventListener('click', (e) => {
+  itemCloseClickOut.forEach(function (item) {
+    if (e.target.className != item) {
       e.target.classList.remove('popup_opened');
-       }
-  });
-} 
-// Закрытие через foreach на нажатие кнопки Escape
-document.addEventListener('keydown', (event)  => {
-  itemCloseClickOut.forEach(function(item, i) {
-    if ( event.key == 'Escape' ) {
-            itemCloseClickOut[i].classList.remove('popup_opened');
-          }
-        })
-        })
+    }
 
-// закрытие по escape через  for
-//   document.addEventListener('keydown', (event)  => {
-//   for(let i =0; i < itemCloseClickOut.length; i++) {
-//     if ( event.key == 'Escape' ) {
-//       itemCloseClickOut[i].classList.remove('popup_opened');
-//     }
-//   }
-// });
+  })
+})
+//----- Закрытие на Escape
+document.addEventListener('keydown', (e) => {
+  itemCloseClickOut.forEach(function (item) {
+    if (e.key === 'Escape') {
+      item.classList.remove('popup_opened');
+    }
+  })
+})
