@@ -49,6 +49,7 @@
           name="form__register"
           action="#"
           method="POST"
+          novalidate
         >
           <fieldset class="popup__form-input">
             <legend>
@@ -56,14 +57,18 @@
             </legend>
             <input
               type="text"
-              class="popup__form-item popup__form-item_name"
+              class="popup__input popup__form-item popup__form-item_name"
               name="name"
+              required
+              minlength="1" maxlength="40"
             />
 
             <input
               type="text"
-              class="popup__form-item popup__form-item_job"
+              class="popup__input popup__form-item popup__form-item_job"
               name="job"
+              required
+              minlength="2" maxlength="200"
             />
 
             <button type="submit" class="popup__form-button popup__item">
@@ -84,6 +89,7 @@
           name="form__add-img"
           action="#"
           method="POST"
+          novalidate
         >
           <fieldset class="popup__form-input">
             <legend>
@@ -91,17 +97,18 @@
             </legend>
             <input
               type="text"
-              class="popup__form-item popup__form-item_place"
+              class="popup__input popup__form-item popup__form-item_place"
               name="name_card"
-              placeholder="Название (обязательное поле)"
+              placeholder="Название"
               required
+              minlength="1" maxlength="40"
             />
 
             <input
               type="url"
-              class="popup__form-item popup__form-item_link-img"
+              class="popup__input popup__form-item popup__form-item_link-img"
               name="link_img"
-              placeholder="Ссылка на картинку (обязатальное поле)"
+              placeholder="Ссылка на картинку"
               required
             />
 

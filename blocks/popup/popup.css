@@ -13,6 +13,7 @@
 @import url(./__image-src/popup__image-src.css);
 @import url(./__images/popup__images.css);
 @import url(./__caption/popup__caption.css);
+@import url(./__input/popup__input.css);
 
 .popup {
   position: fixed;
