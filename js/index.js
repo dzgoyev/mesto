@@ -129,22 +129,37 @@ if (popupCloseButtons != null) {
   }
 }
 
-// ------ закрытие на черном фоне 
-const itemCloseClickOut = Array.from(document.querySelectorAll('.popup'));
-document.addEventListener('click', (e) => {
-  itemCloseClickOut.forEach(function (item) {
+
+const popupAll = Array.from(document.querySelectorAll('.popup'));
+// ------ закрытие на черном фоне
+const popupCloseOnBackground = (item) => document.addEventListener('click', (e) => {
+  item.forEach(function (item) {
     if (e.target.className != item) {
       e.target.classList.remove('popup_opened');
     }
 
   })
 })
+popupCloseOnBackground(popupAll);
+
 //----- Закрытие на Escape
-document.addEventListener('keydown', (e) => {
-  itemCloseClickOut.forEach(function (item) {
+const popupCloseOnEsc = (item) => document.addEventListener('keydown', (e) => {
+  item.forEach(function (item) {
     if (e.key === 'Escape') {
       item.classList.remove('popup_opened');
     }
   })
 })
+popupCloseOnEsc(popupAll);
 
+
+
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});

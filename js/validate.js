@@ -12,9 +12,9 @@ function enableValidation(options) {
 
         })
         formElement.addEventListener('input', () => {
-            const isFormValid = formElement.checkValidity();
+            const isFormValid = formElement.checkValidity(); //если checkValidity() true, то кнопка разблокируется
             submitButton.disabled = !isFormValid;
-            submitButton.classList.toggle(options.inactiveButtonClass, !isFormValid)
+            submitButton.classList.toggle(options.inactiveButtonClass, !isFormValid) //через toggle передаем класс не активной кнопки и вторым параметром !isFormValid
         })
     })
 }
@@ -31,20 +31,7 @@ function handleInput(evt, ErrorClass) { //на вход функции прих�
     }
     else { //иначе 
         input.classList.add(ErrorClass); //когда ошибка есть, добавляем класс
-        console.log(input.validationMessage); //это я уберу потом
         error.textContent = input.validationMessage; // и добавляем в span сообщение об ошибке
     }
 }
-
-
-const objectFormValidation = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'//зачем это тут непонятно - я задал его по умолчанию для spana
-};
-
-enableValidation(objectFormValidation);
 
