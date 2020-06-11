@@ -4,11 +4,11 @@ const popupAddCard = document.querySelector('.popup__add'); // popup for adding 
 const popupImages = document.querySelector('.popup__images'); // popup for large images
 
 // buttons
-const submit = popupProfile.querySelector('.popup__form-button'); //button in the profile form
+// const submit = popupProfile.querySelector('.popup__form-button'); //button in the profile form
 const buttonEdit = document.querySelector('.profile__button-edit'); //save button in the profile form edit
 const buttonAdd = document.querySelector('.profile__button-add'); //button in the adding form
-const submitAdd = popupAddCard.querySelector('.popup__item_add'); //save button in the form add images
-const toggle = document.querySelectorAll('.popup__close-toggle'); //close button - cross
+// const submitAdd = popupAddCard.querySelector('.popup__item_add'); //save button in the form add images
+// const toggle = document.querySelectorAll('.popup__close-toggle'); //close button - cross
 
 // Forms
 const formElement = document.querySelector('.popup__form'); // profile editing form
@@ -41,16 +41,15 @@ function togglePopup(popup) {
 //The function on creating cards
 function createCard(linkImageValue, namePlaceValue) {
   const galleryElement = galleryTemplate.cloneNode(true);
-  galleryElement.querySelector('.gallery__item').src = linkImageValue;
+  const cardImage = galleryElement.querySelector('.gallery__item');
+  cardImage.src = linkImageValue;
   galleryElement.querySelector('.gallery__title').textContent = namePlaceValue;
   galleryElement.querySelector(
     '.gallery__item'
   ).alt = `${namePlaceValue} - фотография`;
   // --- large image output
-  const cardImage = galleryElement.querySelector('.gallery__item');
   const popupImageLarge = document.querySelector('.popup__image-src'); // src image
   const popupImageCaption = document.querySelector('.popup__caption'); //caption for large images
-  cardImage.src = linkImageValue;
   cardImage.addEventListener('click', () => {
     togglePopup(popupImages); //the function adds a modifier for pop-up popup large images
     popupImageLarge.src = linkImageValue;
@@ -88,7 +87,7 @@ initialCards.forEach(function (item) {
 });
 
 // Event on the button in the profile
-function formSubmitHandler(evt) {
+function profileFormSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
@@ -96,7 +95,7 @@ function formSubmitHandler(evt) {
 }
 
 // Event on the button images editing and image add via submit
-function formSubmitHandlerAdd(evt) {
+function newCardFormSubmitHandler(evt) {
   evt.preventDefault();
   const name = namePlace.value;
   const link = linkImage.value;
@@ -114,21 +113,20 @@ buttonEdit.addEventListener('click', () => {
 buttonAdd.addEventListener('click', () => {
   togglePopup(popupAddCard);
 }); // Open Add Image
-formElement.addEventListener('submit', formSubmitHandler); // submit Profile form
-formElementAdd.addEventListener('submit', formSubmitHandlerAdd); // submit Add Card form
+formElement.addEventListener('submit', profileFormSubmitHandler); // submit Profile form
+formElementAdd.addEventListener('submit', newCardFormSubmitHandler); // submit Add Card form
 
 // Init close buttons listeners
 const popupCloseButtons = document.getElementsByClassName(
   'popup__close-toggle'
 );
-if (popupCloseButtons != null) {
-  for (let i = 0; i < popupCloseButtons.length; i++) {
-    popupCloseButtons[i].addEventListener('click', () => {
-      togglePopup(document.querySelector('.popup_opened'));
-    });
-  }
+// if (popupCloseButtons != null) {
+for (let i = 0; i < popupCloseButtons.length; i++) {
+  popupCloseButtons[i].addEventListener('click', () => {
+    togglePopup(document.querySelector('.popup_opened'));
+  });
 }
-
+// }
 
 const popupAll = Array.from(document.querySelectorAll('.popup'));
 // ------ закрытие на черном фоне
@@ -139,7 +137,7 @@ const popupCloseOnBackground = (item) => document.addEventListener('click', (e) 
     }
 
   })
-})
+});
 popupCloseOnBackground(popupAll);
 
 //----- Закрытие на Escape
@@ -148,11 +146,9 @@ const popupCloseOnEsc = (item) => document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       item.classList.remove('popup_opened');
     }
-  })
+  });
 })
 popupCloseOnEsc(popupAll);
-
-
 
 
 enableValidation({
@@ -163,3 +159,4 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 });
+
