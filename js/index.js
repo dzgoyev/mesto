@@ -44,9 +44,7 @@ function createCard(linkImageValue, namePlaceValue) {
   const cardImage = galleryElement.querySelector('.gallery__item');
   cardImage.src = linkImageValue;
   galleryElement.querySelector('.gallery__title').textContent = namePlaceValue;
-  galleryElement.querySelector(
-    '.gallery__item'
-  ).alt = `${namePlaceValue} - фотография`;
+  cardImage.alt = `${namePlaceValue} - фотография`;
   // --- large image output
   const popupImageLarge = document.querySelector('.popup__image-src'); // src image
   const popupImageCaption = document.querySelector('.popup__caption'); //caption for large images
@@ -120,13 +118,13 @@ formElementAdd.addEventListener('submit', newCardFormSubmitHandler); // submit A
 const popupCloseButtons = document.getElementsByClassName(
   'popup__close-toggle'
 );
-// if (popupCloseButtons != null) {
+
 for (let i = 0; i < popupCloseButtons.length; i++) {
   popupCloseButtons[i].addEventListener('click', () => {
     togglePopup(document.querySelector('.popup_opened'));
   });
 }
-// }
+
 
 const popupAll = Array.from(document.querySelectorAll('.popup'));
 // ------ закрытие на черном фоне
@@ -150,13 +148,5 @@ const popupCloseOnEsc = (item) => document.addEventListener('keydown', (e) => {
 })
 popupCloseOnEsc(popupAll);
 
-
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
+enableValidation(obj);
 
