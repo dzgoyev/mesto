@@ -1,15 +1,15 @@
 //Показать ошибки
 const showInputError = (formElement, inputElement, errorMessage) => { //на вход форму, инпут и браузерное сообщение
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`); //находим нужный span через id
-  inputElement.classList.add(obj.inputErrorClass); // активировать ошибку в нужном инпуте
+  inputElement.classList.add(formOptions.inputErrorClass); // активировать ошибку в нужном инпуте
   errorElement.textContent = errorMessage; //записать ошибку в span
-  errorElement.classList.add(obj.errorClass); // включить класс в span
+  errorElement.classList.add(formOptions.errorClass); // включить класс в span
 };
 //Скрыть ошибки 
 const hideInputError = (formElement, inputElement) => { //на вход форму и инпут, далее все как выше, но наоборот
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove(obj.inputErrorClass);
-  errorElement.classList.remove(obj.errorClass);
+  inputElement.classList.remove(formOptions.inputErrorClass);
+  errorElement.classList.remove(formOptions.errorClass);
   errorElement.textContent = ''; //очищаем span
 };
 
@@ -30,18 +30,18 @@ const hasInvalidInput = (inputList) => {  //принимаем массив по
 //Включение и выключение кнопки на основе данных от hasInvalidInput
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(obj.inactiveButtonClass);
+    buttonElement.classList.add(formOptions.inactiveButtonClass);
     buttonElement.disabled = true;
   } else {
-    buttonElement.classList.remove(obj.inactiveButtonClass);
+    buttonElement.classList.remove(formOptions.inactiveButtonClass);
     buttonElement.removeAttribute('disabled');
   }
 
 }
 
 const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(obj.inputSelector)); //массив всех инпутов формы
-  const buttonElement = formElement.querySelector(obj.submitButtonSelector); //найти в форме нопку сабмита
+  const inputList = Array.from(formElement.querySelectorAll(formOptions.inputSelector)); //массив всех инпутов формы
+  const buttonElement = formElement.querySelector(formOptions.submitButtonSelector); //найти в форме нопку сабмита
   toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => { //вешаем на инпуты обработчик
     inputElement.addEventListener('input', function () {

@@ -148,5 +148,5 @@ const popupCloseOnEsc = (item) => document.addEventListener('keydown', (e) => {
 })
 popupCloseOnEsc(popupAll);
 
-enableValidation(obj);
+enableValidation(formOptions);
 
