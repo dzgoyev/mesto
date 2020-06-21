@@ -1,11 +1,16 @@
+import {Popup} from './Popup.js';
+import {Card} from './Card.js';
+
+
 // Всплывающее окно с формой добавления новой карточки в галерею
-class PopupNewCard extends Popup {
-    constructor (popupElement) {
+export class PopupNewCard extends Popup {
+    constructor (popupElement, popupGallery) {
         super(popupElement); // вызываем конструктор родительского класса
 
         this._popupElement = popupElement;
         this._container = document.querySelector('.main');
         this._gallery = this._container.querySelector('.gallery'); //all gallery
+        this._popupGallery = popupGallery;
         this._name = '';
         this._link = '';
     }
@@ -20,10 +25,10 @@ class PopupNewCard extends Popup {
     }
 
     _submit() {
-        let namePlace = this._popupElement.querySelector('.popup__form-item_place'); //name place in the form add
-        let linkImage = this._popupElement.querySelector('.popup__form-item_link-img'); //link img in the form add
+        const namePlace = this._popupElement.querySelector('.popup__form-item_place'); //name place in the form add
+        const linkImage = this._popupElement.querySelector('.popup__form-item_link-img'); //link img in the form add
 
-        const newCard = new Card(namePlace.value, linkImage.value, '#gallery-template', popupGallery); // creating new card
+        const newCard = new Card(namePlace.value, linkImage.value, '#gallery-template', this._popupGallery); // creating new card
         this._addItem(this._gallery, newCard.generateCard()); // adding new card to the gallery
         namePlace.value = '';
         linkImage.value = '';

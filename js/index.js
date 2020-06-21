@@ -1,6 +1,10 @@
-// import {formOptions} from './data.js';
-// import * as all from './Card.js';
-// import * as data from './validate.js';
+import { initialCards, formOptions } from './data.js';
+import { Card } from './Card.js';
+import {FormValidator} from './FormValidator.js';
+import {PopupGallery} from './PopupGallery.js';
+import {PopupNewCard} from './PopupNewCard.js';
+import {PopupProfile} from './PopupProfile.js';
+
 
 // ----- Элементы документа, необходимые для создания объектов
 // Popups
@@ -19,7 +23,7 @@ const labelProfileJob = document.querySelector('.profile__job'); //name job jn t
 
 // ------ Галерея Карточек
 // создаем объект для всплывающего окна изображения карточки в галереи, но не отображаем его
-let popupGallery = new PopupGallery(elementPopupImages); 
+const popupGallery = new PopupGallery(elementPopupImages); 
 // Первоначальная инициализация галереи, создание карточек из исходных данных
 initialCards.forEach((item) => {
   // Для каждой карточки создаем отдельный объект и указываем в какую галерею ее вставить,
@@ -31,7 +35,7 @@ initialCards.forEach((item) => {
 
 // ------- Добавление новой карточки после заполнения формы
 // создаем объект для всплывающего окна с формой
-let popupFormNewCard = new PopupNewCard(elementPopupAddCard);
+let popupFormNewCard = new PopupNewCard(elementPopupAddCard, popupGallery);
 buttonAddNewCard.addEventListener('click', () => {
   // Отобразить форму
   popupFormNewCard.show();
@@ -40,7 +44,7 @@ buttonAddNewCard.addEventListener('click', () => {
 
 // --------- редактирования профиля
 // создаем объект для всплывающего окна с формой
-let popupFormEditProfile = new PopupProfile(elementPopupProfile, labelProfileName, labelProfileJob);
+const popupFormEditProfile = new PopupProfile(elementPopupProfile, labelProfileName, labelProfileJob);
 // Listeners
 buttonEditProfile.addEventListener('click', () => {
   // Отобразить форму с заполнеными полями

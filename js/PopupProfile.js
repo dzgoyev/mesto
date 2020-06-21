@@ -1,5 +1,7 @@
+import {Popup} from './Popup.js';
+import { formOptions } from './data.js';
 // Всплывающее окно с формой редактирования профиля
-class PopupProfile extends Popup {
+export class PopupProfile extends Popup {
     // Параметры конструкутора: элемент попапа формы, элементы надписей для name и job 
     constructor (popupElement, nameLabel, jobLabel) {
         super(popupElement); // вызываем конструктор родительского класса
@@ -34,7 +36,7 @@ class PopupProfile extends Popup {
     }
 
     _setEventListeners() {
-        // Вызовов медота назначения обработчиков родитеского класса в первую очередь,
+        // Вызовов метода назначения обработчиков родительского класса в первую очередь,
         super._setEventListeners(); 
         
         // а затем уже обработчики текущего класса

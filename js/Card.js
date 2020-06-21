@@ -1,6 +1,5 @@
-// import {initialCards} from './data.js';
 
-class Card {
+export class Card {
     constructor (name, link, cardSelector, popup) {
         this._name = name;
         this._link = link;
@@ -17,7 +16,8 @@ class Card {
         this._element = this._getTemplate();
         this._setEventListeners();
         this._element.querySelector('.gallery__title').textContent = this._name;
-        this._element.querySelector('.gallery__item').src = this._link;    
+        this._element.querySelector('.gallery__item').src = this._link;  
+        this._element.querySelector('.gallery__item').alt = `${this._name} - фотография`;
         return this._element;
     }
      
@@ -28,7 +28,7 @@ class Card {
         this._element.querySelector('.gallery__trash').closest('.gallery__container').remove();
     }
     _handleOpenPopup () {
-        this._popup.show(this._link);
+        this._popup.show(this._link, `${this._name} - увеличенная фотография`);
     }
 
     _setEventListeners() {

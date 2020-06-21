@@ -1,12 +1,13 @@
-// Родительский класс для всплывающих оконо
-class Popup {
+// Родительский класс для всплывающих окон
+export class Popup {
     constructor (popupElement) {
         this._popupElement = popupElement;
         this._setEventListeners();
     }
 
     // Отобразить окно. Реализовано в дочерних классах 
-    show() {       
+    show() {  
+         
         return;
     }
     // Закрытие окна
