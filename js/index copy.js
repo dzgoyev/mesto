@@ -1,7 +1,3 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import {initialCards, formOptions} from './data.js';
-
 // Popups
 const popupProfile = document.querySelector('.popup'); //popup profile (other be its elements)
 const popupAddCard = document.querySelector('.popup__add'); // popup for adding a card
@@ -11,7 +7,8 @@ const popupImages = document.querySelector('.popup__images'); // popup for large
 // const submit = popupProfile.querySelector('.popup__form-button'); //button in the profile form
 const buttonEdit = document.querySelector('.profile__button-edit'); //save button in the profile form edit
 const buttonAdd = document.querySelector('.profile__button-add'); //button in the adding form
-
+// const submitAdd = popupAddCard.querySelector('.popup__item_add'); //save button in the form add images
+// const toggle = document.querySelectorAll('.popup__close-toggle'); //close button - cross
 
 // Forms
 const formElement = document.querySelector('.popup__form'); // profile editing form
@@ -21,8 +18,8 @@ const formElementAdd = document.querySelector('.popup__form_add'); // form for a
 const container = document.querySelector('.main'); //main container
 const gallery = container.querySelector('.gallery'); //all gallery
 
-// //Template
-// const galleryTemplate = document.querySelector('#gallery-template').content;
+//Template
+const galleryTemplate = document.querySelector('#gallery-template').content;
 
 // Inputs and output fileds profile
 const nameInput = popupProfile.querySelector('.popup__form-item_name'); //name field in the profile registration
@@ -36,22 +33,64 @@ jobInput.value = profileJob.innerHTML;
 const namePlace = popupAddCard.querySelector('.popup__form-item_place'); //name place in the form add
 const linkImage = popupAddCard.querySelector('.popup__form-item_link-img'); //link img in the form add
 
-
 // Toggle popup
 function togglePopup(popup) {
   popup.classList.toggle('popup_opened');
 }
-// Add any item to container
-function addItem(container, item) {
-  container.prepend(item);
-}
 
-// Первоначальная инициализация галереи, создание карточек из исходных данных
+//The function on creating cards
+// function createCard(linkImageValue, namePlaceValue) {
+//   const galleryElement = galleryTemplate.cloneNode(true);
+//   const cardImage = galleryElement.querySelector('.gallery__item');
+//   cardImage.src = linkImageValue;
+//   galleryElement.querySelector('.gallery__title').textContent = namePlaceValue;
+//   cardImage.alt = `${namePlaceValue} - фотография`;
+//   // --- large image output
+//   const popupImageLarge = document.querySelector('.popup__image-src'); // src image
+//   const popupImageCaption = document.querySelector('.popup__caption'); //caption for large images
+//   cardImage.addEventListener('click', () => {
+//     togglePopup(popupImages); //the function adds a modifier for pop-up popup large images
+//     popupImageLarge.src = linkImageValue;
+//     popupImageLarge.alt = `${namePlaceValue} - увеличенное изображение`;
+//     popupImageCaption.textContent = namePlaceValue;
+//   });
+
+//   //Like
+//   galleryElement
+//     .querySelector('.gallery__like')
+//     .addEventListener('click', function (evt) {
+//       evt.target.classList.toggle('gallery__like_active');
+//     });
+//   //Trash, using -- closest --
+//   const trash = galleryElement.querySelector('.gallery__trash');
+//   trash.addEventListener('click', function () {
+//     const trashItem = trash.closest('.gallery__container');
+//     trashItem.remove();
+//   });
+
+//   return galleryElement;
+// }
+
+// Add any item to container
+// function addItem(container, item) {
+//   container.prepend(item);
+// }
+
 initialCards.forEach((item) => {
-  // Для каждой карточки создаем отдельный объект и указываем куда ее вставить,
-  const card = new Card(item.name, item.link, '#gallery-template').generateCard();
-  addItem(gallery, card);
+  // Для каждой карточки создаем отдельный объект и указываем в какую галерею ее вставить,
+  // а так же в каком всплывающем окне отображать увеличенное изображение
+  const card = new Card(item.name, item.link, '#gallery-template');
+  const cardElement = card.generateCard(); // генереция HTML карточки
+  document.querySelector('.gallery').prepend(cardElement);
 });
+
+// Init gallery
+// initialCards.forEach(function (item) {
+//   const name = item.name;
+//   const link = item.link;
+//   const newCard = createCard(link, name); // creating new card
+//   addItem(gallery, newCard); // adding new card to the gallery
+// });
 
 // Event on the button in the profile
 function profileFormSubmitHandler(evt) {
@@ -59,45 +98,26 @@ function profileFormSubmitHandler(evt) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   togglePopup(popupProfile);
- 
 }
 
 // Event on the button images editing and image add via submit
-function newCardFormSubmitHandler(evt) { //функция добавления новой карточки 
-  evt.preventDefault(); 
-  const name = namePlace.value; //данные поля названия места
-  const link = linkImage.value; //данные поля URL картинки
-  const newCard = new Card(name, link, '#gallery-template').generateCard();
+function newCardFormSubmitHandler(evt) {
+  evt.preventDefault();
+  const name = namePlace.value;
+  const link = linkImage.value;
+  const newCard = createCard(link, name); // creating new card
   addItem(gallery, newCard); // adding new card to the gallery
   namePlace.value = '';
   linkImage.value = '';
   togglePopup(popupAddCard);
 }
 
-
-// function popupErrorClear() {
-//   const errorInput = document.querySelector('input');
-//   const errorSpan = document.querySelector('span');
-//   if (errorInput.id.indexOf('error') || errorSpan.id.indexOf('error')){
-// errorInput.classList.remove('popup__input_type_error');
-// errorSpan.classList.remove('popup__error_visible');
-// errorSpan.textContent = '';
-
-//   }
-  
-// }
-
 // Listeners
 buttonEdit.addEventListener('click', () => {
- nameInput.value =  profileName.textContent;
- jobInput.value = profileJob.innerHTML;
- togglePopup(popupProfile);
-//  popupErrorClear();
-  
+  togglePopup(popupProfile);
 }); // Open Edit Profile
 buttonAdd.addEventListener('click', () => {
   togglePopup(popupAddCard);
-  // popupErrorClear();
 }); // Open Add Image
 formElement.addEventListener('submit', profileFormSubmitHandler); // submit Profile form
 formElementAdd.addEventListener('submit', newCardFormSubmitHandler); // submit Add Card form
@@ -105,7 +125,6 @@ formElementAdd.addEventListener('submit', newCardFormSubmitHandler); // submit A
 // Init close buttons listeners
 const popupCloseButtons = document.getElementsByClassName(
   'popup__close-toggle'
-  
 );
 
 for (let i = 0; i < popupCloseButtons.length; i++) {
@@ -114,13 +133,7 @@ for (let i = 0; i < popupCloseButtons.length; i++) {
   });
 }
 
-// --------- Создание валидатора для каждой формы
-const formList = Array.from(document.querySelectorAll(formOptions.formSelector)); //Находим все формы
-  formList.forEach((formElement) => { //перебираем массив форм
-    (new FormValidator(formOptions, formElement)).enableValidation(true); // содаем валидатор связанный с формой и сразу включаем его
-  });
 
-// -------- Общие обработчики документа
 const popupAll = Array.from(document.querySelectorAll('.popup'));
 // ------ закрытие на черном фоне
 const popupCloseOnBackground = (item) => document.addEventListener('click', (e) => {
@@ -143,4 +156,5 @@ const popupCloseOnEsc = (item) => document.addEventListener('keydown', (e) => {
 })
 popupCloseOnEsc(popupAll);
 
-export {popupImages};
+enableValidation(formOptions);
+
