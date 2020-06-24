@@ -4,7 +4,6 @@ export default class Card {
         this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
-        this._popup = popup;
     }
     //найти шаблон, извлечь его содержимое, найти в нем элемент с классом gallery__container, клонировать его
     _getTemplate () {
@@ -28,12 +27,14 @@ export default class Card {
         this._element.querySelector('.gallery__trash').closest('.gallery__container').remove();
     }
     _handleOpenPopup () {
-        this._popup.show(this._link, `${this._name} - увеличенная фотография`);
+        togglePopup(popupImages);
+        document.querySelector('.popup__image-src').src = this._link;
     }
-
+    
     _setEventListeners() {
      this._element.querySelector('.gallery__item').addEventListener('click', () => {
-            this._handleOpenPopup();
+         this._handleOpenPopup();
+       
      });
      this._element.querySelector('.gallery__like').addEventListener('click', () => {
          this._handleLikeToggle();
@@ -44,7 +45,3 @@ export default class Card {
     }
            
 }
-
-
- 
- 
