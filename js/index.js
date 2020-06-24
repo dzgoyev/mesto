@@ -74,19 +74,6 @@ function newCardFormSubmitHandler(evt) { //функция добавления �
   togglePopup(popupAddCard);
 }
 
-
-// function popupErrorClear() {
-//   const errorInput = document.querySelector('input');
-//   const errorSpan = document.querySelector('span');
-//   if (errorInput.id.indexOf('error') || errorSpan.id.indexOf('error')){
-// errorInput.classList.remove('popup__input_type_error');
-// errorSpan.classList.remove('popup__error_visible');
-// errorSpan.textContent = '';
-
-//   }
-  
-// }
-
 // Listeners
 buttonEdit.addEventListener('click', () => {
  nameInput.value =  profileName.textContent;
