@@ -21,9 +21,6 @@ const formElementAdd = document.querySelector('.popup__form_add'); // form for a
 const container = document.querySelector('.main'); //main container
 const gallery = container.querySelector('.gallery'); //all gallery
 
-// //Template
-// const galleryTemplate = document.querySelector('#gallery-template').content;
-
 // Inputs and output fileds profile
 const nameInput = popupProfile.querySelector('.popup__form-item_name'); //name field in the profile registration
 const jobInput = popupProfile.querySelector('.popup__form-item_job'); // name job in the profile registration
@@ -73,19 +70,6 @@ function newCardFormSubmitHandler(evt) { //функция добавления �
   linkImage.value = '';
   togglePopup(popupAddCard);
 }
-
-
-// function popupErrorClear() {
-//   const errorInput = document.querySelector('input');
-//   const errorSpan = document.querySelector('span');
-//   if (errorInput.id.indexOf('error') || errorSpan.id.indexOf('error')){
-// errorInput.classList.remove('popup__input_type_error');
-// errorSpan.classList.remove('popup__error_visible');
-// errorSpan.textContent = '';
-
-//   }
-  
-// }
 
 // Listeners
 buttonEdit.addEventListener('click', () => {
