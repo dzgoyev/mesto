@@ -21,6 +21,9 @@ const formElementAdd = document.querySelector('.popup__form_add'); // form for a
 const container = document.querySelector('.main'); //main container
 const gallery = container.querySelector('.gallery'); //all gallery
 
+// //Template
+// const galleryTemplate = document.querySelector('#gallery-template').content;
+
 // Inputs and output fileds profile
 const nameInput = popupProfile.querySelector('.popup__form-item_name'); //name field in the profile registration
 const jobInput = popupProfile.querySelector('.popup__form-item_job'); // name job in the profile registration

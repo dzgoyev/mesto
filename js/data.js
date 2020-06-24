@@ -1,5 +1,5 @@
 //initial array
-export const initialCards = [
+const initialCards = [
   {
     name: 'Архыз',
     link:
@@ -31,7 +31,8 @@ export const initialCards = [
       'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
   },
 ];
-export const formOptions = {
+
+const formOptions = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
