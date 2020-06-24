@@ -39,3 +39,5 @@ export const formOptions = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 }
+
+export {initialCards, formOptions} 
