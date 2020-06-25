@@ -38,7 +38,7 @@ popups["edit_profile"] = {'element': popupProfile };
 popups["add_new_card"] = {'element': popupAddCard };
 popups["view_image"] = {'element': popupImages};
 
-// Массив форм с назначенными им валидаторами
+// Массив форм с назначенными им валидаторами (так будет логичнее)
 let forms = {};
 forms["form__edit_profile"] = {
     'element': popups["edit_profile"].element,
@@ -142,8 +142,11 @@ buttonEdit.addEventListener('click', () => {
     openPopup(popups["edit_profile"].element);
 }); // Open Edit Profile
 buttonAdd.addEventListener('click', () => {
-    openPopup(popups["add_new_card"].element);
+  popups["add_new_card"].element.querySelector('.popup__form-item_place').value = ''; //очищаем инпуты
+  popups["add_new_card"].element.querySelector('.popup__form-item_link-img').value = '';
+  openPopup(popups["add_new_card"].element);
 }); // Open Add Image
+
 formElement.addEventListener('submit', profileFormSubmitHandler); // submit Profile form
 formElementAdd.addEventListener('submit', newCardFormSubmitHandler); // submit Add Card form
 

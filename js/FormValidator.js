@@ -90,7 +90,7 @@ export default class FormValidator { //класс валидатор формы
       ); //найти в форме кнопку сабмита
       this._toggleButtonState(inputList, buttonElement); // применяем метод Включение и выключение кнопки на основе данных от hasInvalidInput
 
-      // Сохраняем текущий контекст, чтобы использовать его ниже
+      // Сохраняем текущий контекст, чтобы использовать его ниже 
       const outterThis = this; // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/this
 
       inputList.forEach((inputElement) => {
