@@ -8,10 +8,8 @@ const popupAddCard = document.querySelector('.popup__add'); // popup for adding 
 const popupImages = document.querySelector('.popup__images'); // popup for large images
 
 // buttons
-// const submit = popupProfile.querySelector('.popup__form-button'); //button in the profile form
 const buttonEdit = document.querySelector('.profile__button-edit'); //save button in the profile form edit
 const buttonAdd = document.querySelector('.profile__button-add'); //button in the adding form
-
 
 // Forms
 const formElement = document.querySelector('.popup__form'); // profile editing form
@@ -20,9 +18,6 @@ const formElementAdd = document.querySelector('.popup__form_add'); // form for a
 //Gallery
 const container = document.querySelector('.main'); //main container
 const gallery = container.querySelector('.gallery'); //all gallery
-
-// //Template
-// const galleryTemplate = document.querySelector('#gallery-template').content;
 
 // Inputs and output fileds profile
 const nameInput = popupProfile.querySelector('.popup__form-item_name'); //name field in the profile registration
@@ -35,7 +30,6 @@ jobInput.value = profileJob.innerHTML;
 // Inputs and output fields add images
 const namePlace = popupAddCard.querySelector('.popup__form-item_place'); //name place in the form add
 const linkImage = popupAddCard.querySelector('.popup__form-item_link-img'); //link img in the form add
-
 
 // Toggle popup
 function togglePopup(popup) {
@@ -79,12 +73,11 @@ buttonEdit.addEventListener('click', () => {
  nameInput.value =  profileName.textContent;
  jobInput.value = profileJob.innerHTML;
  togglePopup(popupProfile);
-//  popupErrorClear();
   
 }); // Open Edit Profile
 buttonAdd.addEventListener('click', () => {
   togglePopup(popupAddCard);
-  // popupErrorClear();
+  
 }); // Open Add Image
 formElement.addEventListener('submit', profileFormSubmitHandler); // submit Profile form
 formElementAdd.addEventListener('submit', newCardFormSubmitHandler); // submit Add Card form
@@ -92,7 +85,6 @@ formElementAdd.addEventListener('submit', newCardFormSubmitHandler); // submit A
 // Init close buttons listeners
 const popupCloseButtons = document.getElementsByClassName(
   'popup__close-toggle'
-  
 );
 
 for (let i = 0; i < popupCloseButtons.length; i++) {
