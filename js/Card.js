@@ -1,4 +1,5 @@
-import {popupImages} from './index.js';
+import {popupImages, openPopup} from './index.js';
+
 export default class Card {
     constructor (name, link, cardSelector) {
         this._name = name;
@@ -27,14 +28,14 @@ export default class Card {
         this._element.querySelector('.gallery__trash').closest('.gallery__container').remove();
     }
     _handleOpenPopup () {
-        togglePopup(popupImages);
+        openPopup(popupImages);
         document.querySelector('.popup__image-src').src = this._link;
     }
-    
+
     _setEventListeners() {
      this._element.querySelector('.gallery__item').addEventListener('click', () => {
          this._handleOpenPopup();
-       
+
      });
      this._element.querySelector('.gallery__like').addEventListener('click', () => {
          this._handleLikeToggle();
