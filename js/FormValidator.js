@@ -56,9 +56,11 @@ export default class FormValidator { //класс валидатор формы
 //Сброс ошибок при открытии форм
 resetErrorFormOpen () {
     const inputList = Array.from(this._formElement.querySelectorAll(this._formOptions.inputSelector));
+    
     inputList.forEach(inputElement => {
     this._hideInputError(this._formElement, inputElement);
       })
+      
 }
 
   _checkInputValidity(formElement, inputElement) { //проверить правильность ввода данных //на вход форму и инпут
@@ -91,8 +93,6 @@ resetErrorFormOpen () {
       }
   }
 
-
-// ------
   _setEventListeners() { //набор слушателей событий
       const inputList = Array.from(
           this._formElement.querySelectorAll(this._formOptions.inputSelector)

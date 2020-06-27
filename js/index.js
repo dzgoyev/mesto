@@ -33,76 +33,27 @@ jobInput.value = profileJob.innerHTML;
 const namePlace = popupAddCard.querySelector('.popup__form-item_place'); //name place in the form add
 const linkImage = popupAddCard.querySelector('.popup__form-item_link-img'); //link img in the form add
 
-const editProfileValidation = new FormValidator(formOptions, formElement); //на яндексе я так понял хотят чтобы было так
+const editProfileValidation = new FormValidator(formOptions, formElement); 
 const addCardValidation = new FormValidator(formOptions, formElementAdd);
 
 
-// Массив попапов // Его пока оставил - вроде все работает нормально, но на яндексе почему-то недовольны
+// Массив попапов //
 let popups = {};
 popups["edit_profile"] = {'element': popupProfile };
 popups["add_new_card"] = {'element': popupAddCard };
 popups["view_image"] = {'element': popupImages};
 
-// Массив форм с назначенными им валидаторами // Наверное этот массив стоит убрать
-// let forms = {};
-// forms["form__edit_profile"] = {
-//     'element': popups["edit_profile"].element,
-//     'validator': new FormValidator(formOptions, formElement)
-// };
-// forms["form__add_new_card"] = {
-//     'element': popups["add_new_card"].element,
-//     'validator': new FormValidator(formOptions, formElementAdd)
-// };
-
 // Add any item to container
 function addItem(container, item) {
     container.prepend(item);
 }
-//getOpenedPopup() -- она точно пойдет на удаление
-// Узнать открыт ли какой-либо попап. Если открыт, то вернуть ссылку на него в масиве popups, иначе вернуть false.
-// Функция возвращает ПЕРВЫЙ открытый popup! Считаем его текущим, выидимым для пользователя.
-// function getOpenedPopup() {
-//     for (let key in popups) {
-//         if (popups[key].element.classList.contains('popup_opened')) return popups[key];
-//     }
 
-//     return false;
-// }
-
-//Переписал эту функцию закрытия на Esc и вынес ее в utils.js
-// function closePopupEsc(e) {
-//     const openedPopup = document.querySelector('.popup_opened');
-//     if (e.key === 'Escape') {
-//       closePopup(openedPopup);
-//     }
-//   }
-  
-
-// // Открыть Popup. --- тоже вынес в utils.js
-// function openPopup(popup) {
-//   popup.classList.add('popup_opened');
-//   document.addEventListener('keydown', closePopupEsc); 
-// }
-// Закрыть Popup. --- тоже вынес в utils.js
-// function closePopup(popup) {
-//     popup.classList.remove('popup_opened');
-//     document.removeEventListener('keydown', closePopupEsc);
-// }
-
-// Включить валидацию формы. - Это тоже не нужно будет. Лишняя функция
-// formName - название формы, toggle - true/false
-// function enableFormValidation(formName, toggle) {
-//     if (formName in forms && forms[formName].validator !== undefined) {
-//         forms[formName].validator.enableValidation(toggle);
-//     }
-// }
-
-for (let key in popups) { // Инициализация попапов из массива popups -- оставил но если убирать массив то надо переделать
+for (let key in popups) { // Инициализация попапов из массива popups 
     popups[key].element.querySelector('.popup__close-toggle').addEventListener('click', () => {
         closePopup(popups[key].element); // Вешаем листенер на крестик для закрытия
     });
    
-    // листенер для нажатия за пределы попапа -- оставил, но если убирать массив то надо переделать
+    // листенер для нажатия за пределы попапа
     popups[key].element.addEventListener('click', (e) => {
       // получить открытый попап
       if (popups[key].element.classList.contains('popup_opened')) { 
@@ -153,8 +104,9 @@ buttonAdd.addEventListener('click', () => {
   popups["add_new_card"].element.querySelector('.popup__form-item_link-img').value = '';
   openPopup(popups["add_new_card"].element);
   addCardValidation.resetErrorFormOpen();
+ 
 }); // Open Add Image
-const toggle = true; 
+const toggle = true; //рубильник
 editProfileValidation.enableValidation(toggle);
 addCardValidation.enableValidation(toggle);
 formElement.addEventListener('submit', profileFormSubmitHandler); // submit Profile form
