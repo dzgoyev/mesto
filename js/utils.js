@@ -16,5 +16,7 @@ function closePopupEsc(e) {
   function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEsc);
+    // думаю может тут нужно вставить отдельную функцию сброса ошибок? Эту функцию написать в FormValidation (яша так хотел) . Только как ее вызывать тут.
+
 }
 export {popupImages, openPopup, closePopupEsc, closePopup};

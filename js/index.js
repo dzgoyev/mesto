@@ -33,10 +33,9 @@ jobInput.value = profileJob.innerHTML;
 const namePlace = popupAddCard.querySelector('.popup__form-item_place'); //name place in the form add
 const linkImage = popupAddCard.querySelector('.popup__form-item_link-img'); //link img in the form add
 
-const editProfileValidation = new FormValidator(initialCards, formElement); //на яндексе я так понял хотят чтобы было так
-const addCardValidation = new FormValidator(initialCards, formElementAdd);
-editProfileValidation.enableValidation();
-addCardValidation.enableValidation();
+const editProfileValidation = new FormValidator(formOptions, formElement); //на яндексе я так понял хотят чтобы было так
+const addCardValidation = new FormValidator(formOptions, formElementAdd);
+
 
 // Массив попапов // Его пока оставил - вроде все работает нормально, но на яндексе почему-то недовольны
 let popups = {};
@@ -153,7 +152,9 @@ buttonAdd.addEventListener('click', () => {
   popups["add_new_card"].element.querySelector('.popup__form-item_link-img').value = '';
   openPopup(popups["add_new_card"].element);
 }); // Open Add Image
-
+const toggle = true; 
+editProfileValidation.enableValidation(toggle);
+addCardValidation.enableValidation(toggle);
 formElement.addEventListener('submit', profileFormSubmitHandler); // submit Profile form
 formElementAdd.addEventListener('submit', newCardFormSubmitHandler); // submit Add Card form
 
