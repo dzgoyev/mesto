@@ -65,22 +65,37 @@ export default class FormValidator { //класс валидатор формы
       }
   }
 
-// Включить или выключить валидацию формы
-  enableValidation(toggle) {
-      if (toggle) {
-          this._setEventListeners();       // если true, то включить валидацию (запускаем метод набора слушателей)
-          this._isEnabled = true; // на всякий случай храним состояние валидатора (вкл/выкл)
-      } else {
-          const inputList = Array.from(
-              this._formElement.querySelectorAll(this._formOptions.inputSelector)
-          );
-          inputList.forEach((inputElement) => {
-              this._hideInputError(this._formElement, inputElement);
-          });
-          this._isEnabled = false;
-      }
-  }
+// Включить или выключить валидацию формы -- пока закоментил
+//   enableValidation(toggle) {
+//       if (toggle) {
+//           this._setEventListeners();       // если true, то включить валидацию (запускаем метод набора слушателей)
+//           this._isEnabled = true; // на всякий случай храним состояние валидатора (вкл/выкл)
+//       } else {
+//           const inputList = Array.from(
+//               this._formElement.querySelectorAll(this._formOptions.inputSelector)
+//           );
+//           inputList.forEach((inputElement) => {
+//               this._hideInputError(this._formElement, inputElement);
+//           });
+//           this._isEnabled = false;
+//       }
+//   }
 
+//Это я не дописал
+enableValidation(){
+    if ( this._checkInputValidity() ) {
+        this._setEventListeners();
+    }
+    else {
+        const inputList = Array.from(
+                          this._formElement.querySelectorAll(this._formOptions.inputSelector)
+                       );
+                      inputList.forEach((inputElement) => {
+                          this._hideInputError(this._formElement, inputElement);
+                      });
+    }
+}
+// ------
   _setEventListeners() { //набор слушателей событий
       const inputList = Array.from(
           this._formElement.querySelectorAll(this._formOptions.inputSelector)

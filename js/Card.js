@@ -1,4 +1,4 @@
-import {popupImages, openPopup} from './index.js';
+import {popupImages, openPopup} from './utils.js';
 
 export default class Card {
     constructor (name, link, cardSelector) {
