@@ -145,12 +145,14 @@ buttonEdit.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.innerHTML;
     openPopup(popups["edit_profile"].element);
+    editProfileValidation.resetErrorFormOpen();
 }); // Open Edit Profile
 
 buttonAdd.addEventListener('click', () => {
   popups["add_new_card"].element.querySelector('.popup__form-item_place').value = ''; //очищаем инпуты
   popups["add_new_card"].element.querySelector('.popup__form-item_link-img').value = '';
   openPopup(popups["add_new_card"].element);
+  addCardValidation.resetErrorFormOpen();
 }); // Open Add Image
 const toggle = true; 
 editProfileValidation.enableValidation(toggle);

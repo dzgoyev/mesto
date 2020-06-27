@@ -53,6 +53,13 @@ export default class FormValidator { //класс валидатор формы
       errorElement.classList.remove(this._formOptions.errorClass);
       errorElement.textContent = ""; //очищаем span
   }
+//Сброс ошибок при открытии форм
+resetErrorFormOpen () {
+    const inputList = Array.from(this._formElement.querySelectorAll(this._formOptions.inputSelector));
+    inputList.forEach(inputElement => {
+    this._hideInputError(this._formElement, inputElement);
+      })
+}
 
   _checkInputValidity(formElement, inputElement) { //проверить правильность ввода данных //на вход форму и инпут
       //Если при вводе в инпут есть не корректные данные
