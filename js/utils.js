@@ -1,4 +1,5 @@
 const popupImages = document.querySelector('.popup__images'); // popup for large images
+const cardListSelector = '.gallery'; // для вставки галлереи
 
 // Открыть Popup.
 function openPopup(popup) {
@@ -17,4 +18,5 @@ function closePopupEsc(e) {
     popup.classList.remove('popup_opened');
 
 }
-export {popupImages, openPopup, closePopupEsc, closePopup};
+export {popupImages, cardListSelector, openPopup, closePopupEsc, closePopup};
+

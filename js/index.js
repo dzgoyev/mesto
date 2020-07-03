@@ -1,7 +1,8 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import {initialCards, formOptions} from './data.js';
-import {popupImages, openPopup, closePopup } from './utils.js';
+import {popupImages, cardListSelector, openPopup, closePopup } from './utils.js';
+import Section from './Section.js';
 
 // Popups
 const popupProfile = document.querySelector('.popup'); //popup profile (other be its elements)
@@ -19,7 +20,7 @@ const formElementAdd = document.querySelector('.popup__form_add'); // form for a
 
 //Gallery
 const container = document.querySelector('.main'); //main container
-const gallery = container.querySelector('.gallery'); //all gallery
+// const gallery = container.querySelector('.gallery'); //all gallery
 
 // Inputs and output fileds profile
 const nameInput = popupProfile.querySelector('.popup__form-item_name'); //name field in the profile registration
@@ -44,9 +45,9 @@ popups["add_new_card"] = {'element': popupAddCard };
 popups["view_image"] = {'element': popupImages};
 
 // Add any item to container
-function addItem(container, item) {
-    container.prepend(item);
-}
+// function addItem(container, item) {
+//     container.prepend(item);
+// }
 
 for (let key in popups) { // Инициализация попапов из массива popups 
     popups[key].element.querySelector('.popup__close-toggle').addEventListener('click', () => {
@@ -64,12 +65,25 @@ for (let key in popups) { // Инициализация попапов из ма
     });
 }
 
-// Первоначальная инициализация галереи, создание карточек из исходных данных
-initialCards.forEach((item) => {
-    // Для каждой карточки создаем отдельный объект и указываем куда ее вставить,
-    const card = new Card(item.name, item.link, '#gallery-template').generateCard();
-    addItem(gallery, card);
-});
+//Проектная работа 8 - Генерация и вывод карточек 
+const cardList = new Section ({
+    data: initialCards,
+    renderer: (item) => {
+        const card = new Card(item.name, item.link, '#gallery-template').generateCard();
+        cardList.addItem(card);
+    }
+}, cardListSelector); // в утилитах
+cardList.renderItems();
+
+
+// 
+
+// // Первоначальная инициализация галереи, создание карточек из исходных данных
+// initialCards.forEach((item) => {
+//     // Для каждой карточки создаем отдельный объект и указываем куда ее вставить,
+//     const card = new Card(item.name, item.link, '#gallery-template').generateCard();
+//     addItem(gallery, card);
+// });
 
 // Event on the button in the profile
 function profileFormSubmitHandler(evt) {
