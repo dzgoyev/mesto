@@ -20,12 +20,6 @@ export default class Popup {
         document.removeEventListener('keyup', this._handleEscClose);
     }
 
-    // setEventListener() {
-    //     this._selector.addEventListener('click', (evt) => {
-    //         this._handleClick(evt);
-    //     })
-    // }
-
     setEventListeners () {
         this._selector.addEventListener('click', (e) => { 
             if (e.target.classList.contains('popup__close-toggle') || (e.target.classList.contains('popup'))) {//попал по кресту
@@ -35,13 +29,5 @@ export default class Popup {
     
     })
 }
-    
-// _handleClick(evt) {
-//     if (evt.target.classList.contains('popup__close-toggle') || (evt.target.classList.contains('popup'))) {
-//         this.close();
-//     }
-// }
-
-
-
+  
  }

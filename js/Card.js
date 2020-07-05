@@ -1,5 +1,5 @@
 // import {popupImages, openPopup} from './utils.js';
-
+//Класс почти остался без изменений 
 export default class Card {
     constructor (name, link, cardSelector, handleCardClick) {
         this._name = name;
@@ -29,20 +29,10 @@ export default class Card {
     _handleCardDelete () {
         this._element.querySelector('.gallery__trash').closest('.gallery__container').remove();
     }
-    // _handleOpenPopup () {
-    //     openPopup(popupImages);
-    //     document.querySelector('.popup__image-src').src = this._link;
-    // }
-
-    //  handleCardClick () {
-    //      openPopup(popupImages);
-    //  document.querySelector('.popup__image-src').src = this._link;
-
-    // }
-
+    
     _setEventListeners() {
      this._element.querySelector('.gallery__item').addEventListener('click', () => {
-         this._handleCardClick(this._name, this._link);
+       this._handleCardClick(this._name, this._link);
 
      });
      this._element.querySelector('.gallery__like').addEventListener('click', () => {
