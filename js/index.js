@@ -81,7 +81,7 @@ const cardList = new Section ({
         const card = new Card(item.name, item.link, '#gallery-template', handleCardClick).generateCard();
         cardList.addItem(card);
         card.addEventListener('click', function (){
-    handleCardClick (item.name, item.link);
+    // handleCardClick (item.name, item.link);
  })    
     }
     
@@ -146,8 +146,8 @@ buttonEdit.addEventListener('click', () => {
 }); // Open Edit Profile
 
 buttonAdd.addEventListener('click', () => {
-  popups["add_new_card"].element.querySelector('.popup__form-item_place').value = ''; //очищаем инпуты
-  popups["add_new_card"].element.querySelector('.popup__form-item_link-img').value = '';
+//   popups["add_new_card"].element.querySelector('.popup__form-item_place').value = ''; //очищаем инпуты
+//   popups["add_new_card"].element.querySelector('.popup__form-item_link-img').value = '';
 //   openPopup(popups["add_new_card"].element);
   addCardValidation.resetErrorFormOpen();
  

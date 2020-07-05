@@ -9,7 +9,7 @@ export default class Popup {
 
     }
     
-    open(){ 
+    open() { 
         this.setEventListeners();
         this._selector.classList.add('popup_opened'); 
         document.addEventListener('keyup', this._handleEscClose);
@@ -19,6 +19,12 @@ export default class Popup {
         this._selector.classList.remove('popup_opened');
         document.removeEventListener('keyup', this._handleEscClose);
     }
+
+    // setEventListener() {
+    //     this._selector.addEventListener('click', (evt) => {
+    //         this._handleClick(evt);
+    //     })
+    // }
 
     setEventListeners () {
         this._selector.addEventListener('click', (e) => { 
@@ -30,4 +36,12 @@ export default class Popup {
     })
 }
     
-}
+// _handleClick(evt) {
+//     if (evt.target.classList.contains('popup__close-toggle') || (evt.target.classList.contains('popup'))) {
+//         this.close();
+//     }
+// }
+
+
+
+ }

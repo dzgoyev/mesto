@@ -12,9 +12,6 @@ class PopupWithForm extends Popup { // для каждого попапа доб
         this._inputList = this._selector.querySelectorAll('.popup__input'); //найти все инпуты
         this._inputList.forEach(element => this._inputData[element.name] = input.value); //заполняем объект данными
         return this._inputData;
-            
-       
-
 
     }
 

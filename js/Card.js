@@ -25,6 +25,7 @@ export default class Card {
     _handleLikeToggle () {
         this._element.querySelector('.gallery__like').classList.toggle('gallery__like_active');
     }
+    
     _handleCardDelete () {
         this._element.querySelector('.gallery__trash').closest('.gallery__container').remove();
     }
