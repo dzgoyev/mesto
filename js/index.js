@@ -1,13 +1,15 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import {initialCards, formOptions} from './data.js';
-import {popupImages, cardListSelector, openPopup, closePopup } from './utils.js';
+import {popupImages, cardListSelector } from './utils.js'; //CardListSelector (проектная работа 8)
 import Section from './Section.js';
+import PopupWithImage from './PopupWithImage.js';
 
 // Popups
 const popupProfile = document.querySelector('.popup'); //popup profile (other be its elements)
 const popupAddCard = document.querySelector('.popup__add'); // popup for adding a card
 // const popupImages = document.querySelector('.popup__images'); // popup for large images
+
 
 // buttons
 // const submit = popupProfile.querySelector('.popup__form-button'); //button in the profile form
@@ -37,43 +39,73 @@ const linkImage = popupAddCard.querySelector('.popup__form-item_link-img'); //li
 const editProfileValidation = new FormValidator(formOptions, formElement); 
 const addCardValidation = new FormValidator(formOptions, formElementAdd);
 
+const popupWithImages = new PopupWithImage('.popup__images'); // popup for large images
+
 
 // Массив попапов //
-let popups = {};
-popups["edit_profile"] = {'element': popupProfile };
-popups["add_new_card"] = {'element': popupAddCard };
-popups["view_image"] = {'element': popupImages};
+// let popups = {};
+// popups["edit_profile"] = {'element': popupProfile };
+// popups["add_new_card"] = {'element': popupAddCard };
+// popups["view_image"] = {'element': popupImages};
 
 // Add any item to container
 // function addItem(container, item) {
 //     container.prepend(item);
 // }
 
-for (let key in popups) { // Инициализация попапов из массива popups 
-    popups[key].element.querySelector('.popup__close-toggle').addEventListener('click', () => {
-        closePopup(popups[key].element); // Вешаем листенер на крестик для закрытия
-    });
+// for (let key in popups) { // Инициализация попапов из массива popups 
+//     popups[key].element.querySelector('.popup__close-toggle').addEventListener('click', () => {
+//         closePopup(popups[key].element); // Вешаем листенер на крестик для закрытия
+//     });
    
-    // листенер для нажатия за пределы попапа
-    popups[key].element.addEventListener('click', (e) => {
-      // получить открытый попап
-      if (popups[key].element.classList.contains('popup_opened')) { 
-        if (popups[key] && popups[key].element.contains(e.target)) { // если таковой есть и клик совершен за его пределы
-            closePopup(e.target); // закрыть попап
-        }
-      }
-    });
-}
+//     // листенер для нажатия за пределы попапа
+//     popups[key].element.addEventListener('click', (e) => {
+//       // получить открытый попап
+//       if (popups[key].element.classList.contains('popup_opened')) { 
+//         if (popups[key] && popups[key].element.contains(e.target)) { // если таковой есть и клик совершен за его пределы
+//             closePopup(e.target); // закрыть попап
+//         }
+//       }
+//     });
+// }
 
 //Проектная работа 8 - Генерация и вывод карточек 
+
+function handleCardClick (name, link) {
+    popupWithImages.open(name, link);
+}
+
 const cardList = new Section ({
     data: initialCards,
     renderer: (item) => {
-        const card = new Card(item.name, item.link, '#gallery-template').generateCard();
+        const card = new Card(item.name, item.link, '#gallery-template', handleCardClick).generateCard();
         cardList.addItem(card);
+        card.addEventListener('click', function (){
+    handleCardClick (item.name, item.link);
+ })    
     }
+    
 }, cardListSelector); // в утилитах
 cardList.renderItems();
+
+// const cardList = new Section ({
+//     data: initialCards,
+//     renderer: (item) => {
+//         const card = new Card ({
+//         name: item.name,
+//         link: item.link,
+//         selector: '#gallery-template',
+//         handleCardClick: (name, link) => {
+//             popupWithImage.open(name, link);
+//         }});
+// const cardElement = card.generateCard();
+//         cardList.addItem(cardElement);
+        
+//     }
+    
+// }, cardListSelector); // в утилитах
+// cardList.renderItems();
+
 
 
 // 
@@ -90,7 +122,7 @@ function profileFormSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopup(popups["edit_profile"].element);
+    // closePopup(popups["edit_profile"].element);
 }
 
 // Event on the button images editing and image add via submit
@@ -98,25 +130,25 @@ function newCardFormSubmitHandler(evt) { //функция добавления �
     evt.preventDefault();
     const name = namePlace.value; //данные поля названия места
     const link = linkImage.value; //данные поля URL картинки
-    const newCard = new Card(name, link, '#gallery-template').generateCard();
+    const newCard = new Card(name, link, '#gallery-template', handleCardClick).generateCard();
     addItem(gallery, newCard); // adding new card to the gallery
     namePlace.value = '';
     linkImage.value = '';
-    closePopup(popups["add_new_card"].element);
+    // closePopup(popups["add_new_card"].element);
 }
 
 // Listeners
 buttonEdit.addEventListener('click', () => {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.innerHTML;
-    openPopup(popups["edit_profile"].element);
+    // openPopup(popups["edit_profile"].element);
     editProfileValidation.resetErrorFormOpen();
 }); // Open Edit Profile
 
 buttonAdd.addEventListener('click', () => {
   popups["add_new_card"].element.querySelector('.popup__form-item_place').value = ''; //очищаем инпуты
   popups["add_new_card"].element.querySelector('.popup__form-item_link-img').value = '';
-  openPopup(popups["add_new_card"].element);
+//   openPopup(popups["add_new_card"].element);
   addCardValidation.resetErrorFormOpen();
  
 }); // Open Add Image

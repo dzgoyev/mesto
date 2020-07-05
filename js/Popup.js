@@ -1,31 +1,33 @@
-class Popup {
+export default class Popup {
     constructor(selector) { //на вход селектор попапа
         this._selector = document.querySelector(selector);
-    }
-
-    open(){ //открытие попапа. Функция с прошлой версии работы (utils.js)
-        this._selector.classList.add('popup_opened'); 
-    document.addEventListener('keydown', this._handleEscClose());
-    }
-
-    close() {//закрытие попапа. Функция с прошлой версии работы
-        this._selector.classList.remove('popup_opened');
-        // document.removeEventListener('keydown', closePopupEsc);
-    }
-
-    _handleEscClose = (e) => { //закрытие на esc
-        if (e.key === 'Escape') {
-           this.close();
-          }
-        
-    }
-
-    setEventListeners () {//слушатель клика по кресту закрытия
-        this._selector.addEventListener('click', (e) => { //если клик 
-            if (e.target.clasList.contains('.popup__close-toggle')) {//попал по кресту
-                this.close();//закрываем попап
+        this._handleEscClose = (e) => { //закрытие на esc
+            if (e.key === 'Escape') {
+             this.close();
             }
-        })
+      }
+
+    }
+    
+    open(){ 
+        this.setEventListeners();
+        this._selector.classList.add('popup_opened'); 
+        document.addEventListener('keyup', this._handleEscClose);
     }
 
+    close() {
+        this._selector.classList.remove('popup_opened');
+        document.removeEventListener('keyup', this._handleEscClose);
+    }
+
+    setEventListeners () {
+        this._selector.addEventListener('click', (e) => { 
+            if (e.target.classList.contains('popup__close-toggle') || (e.target.classList.contains('popup'))) {//попал по кресту
+                this.close();//закрываем попап
+           
+            }
+    
+    })
+}
+    
 }

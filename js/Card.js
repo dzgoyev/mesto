@@ -1,10 +1,11 @@
-import {popupImages, openPopup} from './utils.js';
+// import {popupImages, openPopup} from './utils.js';
 
 export default class Card {
-    constructor (name, link, cardSelector) {
+    constructor (name, link, cardSelector, handleCardClick) {
         this._name = name;
         this._link = link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
     //найти шаблон, извлечь его содержимое, найти в нем элемент с классом gallery__container, клонировать его
     _getTemplate () {
@@ -27,14 +28,20 @@ export default class Card {
     _handleCardDelete () {
         this._element.querySelector('.gallery__trash').closest('.gallery__container').remove();
     }
-    _handleOpenPopup () {
-        openPopup(popupImages);
-        document.querySelector('.popup__image-src').src = this._link;
-    }
+    // _handleOpenPopup () {
+    //     openPopup(popupImages);
+    //     document.querySelector('.popup__image-src').src = this._link;
+    // }
+
+    //  handleCardClick () {
+    //      openPopup(popupImages);
+    //  document.querySelector('.popup__image-src').src = this._link;
+
+    // }
 
     _setEventListeners() {
      this._element.querySelector('.gallery__item').addEventListener('click', () => {
-         this._handleOpenPopup();
+         this._handleCardClick(this._name, this._link);
 
      });
      this._element.querySelector('.gallery__like').addEventListener('click', () => {
