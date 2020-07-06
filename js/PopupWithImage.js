@@ -5,12 +5,12 @@ export default class PopupWithImage extends Popup {
         super(selector);
     }
     open (name, link) {//перезаписать метод open от предка Popup
-        //вставить в  popup картинку с атрубитами src и alt
-        super.open();
+        //вставить в  popup картинку с атрубитами src и alt. Попап с картинкой
+        super.open(); 
         this._element = this._selector.querySelector('.popup__image-src');
         this._element.src = link;  
         this._element.alt = `${name} - фотография`;
-        this._selector.querySelector('.popup__caption').textContent = name;        
+        this._selector.querySelector('.popup__caption').textContent = name; //описание внизу img        
     }
 }
 

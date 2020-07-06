@@ -4,7 +4,7 @@ export default class PopupWithForm extends Popup { // для каждого по
     constructor ({selector, submit}) {  //передаем селектор попапа и колбэк самбита формы
         super(selector); 
         this._submit = submit;
-        this._handleSubmit = (e) => { //дописываем к существующему в родителе обработчику клика обработчик сабмита
+        this._clickOnSubmit = (e) => { //дописываем к существующему в родителе обработчику клика обработчик сабмита
             e.preventDefault();
             this._submit(this._getInputValues());
             this.close();
@@ -25,12 +25,12 @@ export default class PopupWithForm extends Popup { // для каждого по
 
     close() {   //перезаписываем метод close() из предка (добавляем сброс формы)
         super.close();
-        this._form.removeEventListener('submit', this._handleSubmit);
+        this._form.removeEventListener('submit', this._clickOnSubmit);
         this._form.reset();
 
     }
     _setEventListeners() { //перезаписываем родительский метод  (обработчик клика иконке закрытия идет из предка)
-        this._form.addEventListener('submit', this._handleSubmit);
+        this._form.addEventListener('submit', this._clickOnSubmit);
        
     }
 }

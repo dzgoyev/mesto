@@ -1,5 +1,3 @@
-// import {popupImages, openPopup} from './utils.js';
-//Класс почти остался без изменений 
 export default class Card {
     constructor (name, link, cardSelector, handleCardClick) {
         this._name = name;
@@ -21,7 +19,7 @@ export default class Card {
         this._element.querySelector('.gallery__item').alt = `${this._name} - фотография`;
         return this._element;
     }
-     
+        
     _handleLikeToggle () {
         this._element.querySelector('.gallery__like').classList.toggle('gallery__like_active');
     }
