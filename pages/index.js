@@ -1,11 +1,11 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import {initialCards, formOptions} from './data.js';
-import {popupImages, cardListSelector } from './utils.js'; //CardListSelector (проектная работа 8)
-import Section from './Section.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import {initialCards, formOptions} from '../utils/data.js';
+import {popupImages, cardListSelector } from '../utils/utils.js'; //CardListSelector (проектная работа 8)
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
 // Popups
 const popupProfile = document.querySelector('.popup'); //popup profile (other be its elements)
@@ -22,7 +22,7 @@ const formElement = document.querySelector('.popup__form'); // profile editing f
 const formElementAdd = document.querySelector('.popup__form_add'); // form for add images
 
 //Gallery
-const container = document.querySelector('.main'); //main container
+// const container = document.querySelector('.main'); //main container
 // const gallery = container.querySelector('.gallery'); //all gallery
 
 // Inputs and output fileds profile
