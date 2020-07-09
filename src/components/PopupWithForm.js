@@ -19,7 +19,7 @@ export default class PopupWithForm extends Popup { // для каждого по
 
     }
     open() {
-        this._setEventListeners();
+        // this.setEventListeners();
         super.open();
     }
 
@@ -29,7 +29,8 @@ export default class PopupWithForm extends Popup { // для каждого по
         this._form.reset();
 
     }
-    _setEventListeners() { //перезаписываем родительский метод  (обработчик клика иконке закрытия идет из предка)
+    setEventListeners() { //перезаписываем родительский метод  (обработчик клика иконке закрытия идет из предка)
+        super.setEventListeners();
         this._form.addEventListener('submit', this._clickOnSubmit);
        
     }

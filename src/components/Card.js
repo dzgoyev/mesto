@@ -13,10 +13,12 @@ export default class Card {
 
     generateCard() {//метод для вставки в разметку
         this._element = this._getTemplate();
+        const cardImg = this._element.querySelector('.gallery__item');
+        const cardTitle = this._element.querySelector('.gallery__title');
         this._setEventListeners();
-        this._element.querySelector('.gallery__title').textContent = this._name;
-        this._element.querySelector('.gallery__item').src = this._link;  
-        this._element.querySelector('.gallery__item').alt = `${this._name} - фотография`;
+        cardTitle.textContent = this._name;
+        cardImg.src = this._link;  
+        cardImg.alt = `${this._name} - фотография`;
         return this._element;
     }
         
@@ -26,6 +28,7 @@ export default class Card {
     
     _handleCardDelete () {
         this._element.querySelector('.gallery__trash').closest('.gallery__container').remove();
+        this._element = null;
     }
     
     _setEventListeners() {

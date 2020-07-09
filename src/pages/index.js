@@ -47,13 +47,16 @@ const userInfo = new UserInfo({
 const editProfileValidation = new FormValidator(formOptions, formElement); 
 const addCardValidation = new FormValidator(formOptions, formElementAdd);
 const popupWithImages = new PopupWithImage('.popup__images'); // popup for large images
+popupWithImages.setEventListeners();
 const popupWithFormProfile = new PopupWithForm({selector: '.popup', submit: (values) => {userInfo.setUserInfo(values)}});
+popupWithFormProfile.setEventListeners();
 const popupWithFormAddCard = new PopupWithForm({
     selector: '.popup__add', submit: () => {
     const card = new Card(namePlace.value, linkImage.value, '#gallery-template', handleCardClick).generateCard();
     cardList.addItem(card);
     }
 })
+popupWithFormAddCard.setEventListeners();
 
 function handleCardClick (name, link) {
     popupWithImages.open(name, link);
