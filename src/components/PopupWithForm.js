@@ -7,7 +7,7 @@ export default class PopupWithForm extends Popup { // для каждого по
         this._clickOnSubmit = (e) => { //дописываем к существующему в родителе обработчику клика обработчик сабмита
             e.preventDefault();
             this._submit(this._getInputValues());
-            this.close();
+            // this.close();
         }
         this._form = this._selector.querySelector('.popup__form'); //получить ЭТУ форму
     }

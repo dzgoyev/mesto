@@ -59,9 +59,9 @@ const popupWithImages = new PopupWithImage('.popup__images'); // popup for large
 
 const popupWithFormProfile = new PopupWithForm({
     selector: '.popup', 
-    submit: (values) => {
+    submit: (data) => {
         loading(buttonSubmitEdit, true, 'Сохранение...')
-        userInfo.setUserInfo(values).then(data => {
+            userInfo.setUserInfo(data).then(data => {
             profileName.textContent = data.name;
             profileJob.textContent = data.about;
         })
@@ -82,13 +82,8 @@ const popupWithFormAddCard = new PopupWithForm({
             const cardList = new Section({
                 data: [data],
                 renderer: (item) => {
-                    const card = new Card({
-                        data: item,
-                        cardSelector: '#gallery-template',
-						handleCardClick: handleCardClick,
-                         api: api,
-                         myId: item.owner._id,
-                         handleTrashClick: (cardId, element, api) => {
+                    const card = new Card({data: item, cardSelector: '#gallery-template', handleCardClick: handleCardClick,
+                         api: api, myId: item.owner._id, handleTrashClick: (cardId, element, api) => {
                             popupDeleteCard.open(cardId, element, api)
                         },
                     }).generateCard();
@@ -100,7 +95,7 @@ const popupWithFormAddCard = new PopupWithForm({
         })
         .finally(() => {
             popupWithFormAddCard.close();
-            loading(buttonSubmitAdd, false, 'Сохранить');
+            loading(buttonSubmitAdd, false, 'Создать');
         })
     }
 })
@@ -122,6 +117,8 @@ cardList.renderItems();
 })
 })
 
+
+// -----------------
 const popupEditAvatar = new PopupWithForm({
     selector: '.popup__avatar',
     submit: (data) => {
@@ -136,13 +133,6 @@ const popupEditAvatar = new PopupWithForm({
             })
     }
 })
-
-function editUserAvatar() {
-    const userAvatar = userInfo.getUserAvatar();
-    inputAvatarLink.value = userAvatar.link;
-    popupEditAvatar.open();
-    formAvatarValidation.enableValidation();
-}
 
 profileFoto.addEventListener('click', editUserAvatar)
 
@@ -171,16 +161,23 @@ formAvatarValidation.enableValidation(toggle);
 //функции
 function loading (button, isLoading, text) { 
     if(isLoading) {
-        button.setAttribute('disabled', true)
+        button.removeAttribute('disabled')
         button.textContent = text;
     }
     else {    
-        // button.removeAttribute('disabled')
+        button.setAttribute('disabled', true)
         button.textContent = text;
     }
 }
 function handleCardClick (name, link) {
     popupWithImages.open(name, link);
+}
+
+function editUserAvatar() {
+    const userAvatar = userInfo.getUserAvatar();
+    inputAvatarLink.value = userAvatar.link;
+    popupEditAvatar.open();
+    formAvatarValidation.enableValidation();
 }
 
 // Радары

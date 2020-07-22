@@ -18,7 +18,7 @@ export default class PopupDeleteCard extends Popup {
             })
             .finally(() => {
                 this.close();
-                this._loading(this._button, false, 'Удалить')
+                this._loading(this._button, true, 'Удалить')
             })
         })
         super.open()
