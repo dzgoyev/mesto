@@ -12,6 +12,7 @@
   width: 21px;
   height: 18px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .gallery__like:hover {

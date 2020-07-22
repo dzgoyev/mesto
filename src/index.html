@@ -16,11 +16,14 @@
 </header>
 <main class="main page__section">
     <section class="profile">
+        <div class="profile__foto-container">
         <img
                 class="profile__avatar"
                 src="./images/profile/avatar.jpg"
                 alt="Фото Кусто"
         />
+        <div class="profile__avatar-pen"></div>
+        </div>
         <div class="profile__description">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
 
@@ -47,8 +50,8 @@
         <form
                 class="popup__form"
                 name="form__edit_profile"
-                action="#"
-                method="POST"
+                action=""
+                method="GET"
                 novalidate
         >
             <fieldset class="popup__form-input">
@@ -71,10 +74,11 @@
                         minlength="2" maxlength="200"
                 />
                 <span id="job-input-error"></span>
-                <button type="submit" class="popup__button popup__button_disabled popup__form-button popup__item"
+                <button type="submit" class="popup__form-submit_edit popup__button popup__button_disabled popup__form-button popup__item"
                         disabled>
                     Сохранить
                 </button>
+               
             </fieldset>
         </form>
     </div>
@@ -88,8 +92,8 @@
         <form
                 class="popup__form popup__form_add"
                 name="form__add_new_card"
-                action="#"
-                method="POST"
+                action=""
+                method="GET"
                 novalidate
         >
             <fieldset class="popup__form-input">
@@ -115,7 +119,7 @@
                 <span id="url-input-error"></span>
                 <button
                         type="submit"
-                        class="popup__button popup__form-button popup__item popup__item_add popup__button_disabled"
+                        class="popup__button popup__form-submit_add popup__form-button popup__item popup__item_add popup__button_disabled"
                 >
                     Создать
                 </button>
@@ -136,6 +140,53 @@
         <p class="popup__caption"></p>
     </div>
 </div>
+<!-- 9 работа -->
+<div class="popup popup__delete">
+    <div class="popup__container popup__container-delete">
+        <h2 class="popup__title popup__item popup__item-delete">Вы уверены?</h2>
+        <button type="submit" class="popup__button popup__form-button popup__delete-button popup__item">
+    Да
+</button>
+        <button type="button" class="popup__close-toggle"></button>
+    </div>
+</div>
+
+<div class="popup popup__avatar">
+    <div class="popup__container popup__form_avatar_update">
+        <button type="button" class="popup__close-toggle"></button>
+
+        <form
+                class="popup__form "
+                name="form__add_new_avatar"
+                action=""
+                method="GET"
+                novalidate
+        >
+            <fieldset class="popup__form-input">
+                <legend>
+                    <h2 class="popup__title popup__item">Обновить аватар</h2>
+                </legend>
+                <input
+                        type="url"
+                        class="popup__input popup__form-item popup__form-item_link-img" id="url-input"
+                        name="link_img"
+                        placeholder="Ссылка на аватар"
+                        required
+                />
+                <span id="url-input-error"></span>
+                <button
+                        type="submit"
+                        class="popup__button popup__form-button popup__item popup__item_add popup__button_disabled"
+                >
+                    Сохранить
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+
+<!-- end 9 работа  -->
 <!-- gallery create template -->
 <template id="gallery-template">
     <figure class="gallery__container">
@@ -144,7 +195,11 @@
         <img alt="" class="gallery__item gallery__item_alt"/>
         <figcaption class="gallery__caption">
             <h3 class="gallery__title"></h3>
+            <div class="gallery__like-container">
             <button class="gallery__like" type="button"></button>
+            <span class="gallery__like-counter">6</span>
+            </div>
+            
         </figcaption>
     </figure>
 </template>

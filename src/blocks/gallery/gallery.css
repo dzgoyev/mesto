@@ -5,6 +5,10 @@
 @import url(./__like/gallery__like.css);
 @import url(./__trash/gallery__trash.css);
 
+@import url(./__like-counter/gallery__like-counter.css);
+@import url(./__like-container/gallery__like-container.css);
+@import url(./__trash/_active/gallery__trash_active.css);
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, 282px);

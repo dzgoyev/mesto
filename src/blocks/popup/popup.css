@@ -2,6 +2,7 @@
 @import url(./__close-toggle/popup__close-toggle.css);
 @import url(./__form/popup__form.css);
 @import url(./__item/popup__item.css);
+@import url(./__form_avatar_update/popup__form_avatar_update.css);
 @import url(./__form-container/popup__form-container.css);
 @import url(./__form-item/popup__form-item.css);
 @import url(./__title/popup__title.css);
@@ -16,6 +17,15 @@
 @import url(./__input/popup__input.css);
 @import url(./__error/_visible/popup__error_visible.css);
 @import url(./__button/_disabled/popup__button_disabled.css);
+
+
+@import url(./__delete/popup__delete.css);
+@import url(./__container-delete/popup__container-delete.css);
+@import url(./__delete-button/popup__delete-button.css);
+@import url(./__item-delete/popup__item-delete.css);
+@import url(./__form-submit_edit/popup__form-sumbit_edit.css);
+@import url(./__form-submit_add/popup__form-submit_add.css);
+
 
 
 .popup {

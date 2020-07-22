@@ -1,5 +1,3 @@
-// import { initialCards, formOptions } from "./data";
-
 export default class FormValidator { //класс валидатор формы
   constructor(formOptions, formElement) { //получает на вход параметры: Объект с параметрами формы и форму
       this._formOptions = formOptions; //this указывает на экземпляр класса

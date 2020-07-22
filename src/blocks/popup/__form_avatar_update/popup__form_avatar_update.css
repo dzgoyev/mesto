@@ -1,0 +1,15 @@
+.popup__form_avatar_update {
+    min-height: 272px;
+}
+
+@media (max-width: 543px) {
+    .popup__container {
+      min-height: 233px;
+    }
+  }
+    
+  @media (max-width: 375px) {
+    .popup__container {
+      min-height: 205px;
+    }
+  }

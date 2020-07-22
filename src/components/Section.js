@@ -3,15 +3,13 @@ export default class Section {
         this._items = data;
         this._renderer = renderer; 
         this._container = document.querySelector(container);
-       //data, renderer: при создании экз Section в index.js в его свойство (переменную) data попадает InitialCards (data: InitialCards)), а в св-во  renderer функция, которая принимает на вход объект
     }
 
     renderItems() { 
-        this._items.forEach(item => { //взять  каждый элемент массива и применить к нему renderer
-            this._renderer(item); //item - это каждый отдельный элемент массива
-        });
-       
-    }
+        this._items.forEach((item) => {
+            this._renderer(item);
+        } 
+        )}
 
     addItem(element) { 
         this._container.prepend(element);

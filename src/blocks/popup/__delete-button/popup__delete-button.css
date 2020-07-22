@@ -1,0 +1,12 @@
+.popup__delete-button {
+     margin-top: 0;
+    
+}
+
+@media (max-width: 375px) {
+    .popup__delete-button {
+     
+      margin-left: 20px;
+
+    }
+  }
