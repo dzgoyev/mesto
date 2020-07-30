@@ -1,11 +1,12 @@
 export default class Card {
-    constructor ({data, cardSelector, handleCardClick,  api, myId, handleTrashClick}) {
+    constructor ({data, cardSelector, handleCardClick, myId, handleTrashClick, handleSetCardLike, handleDeleteCardLike}) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._handleTrashClick = handleTrashClick;
-        this._api = api;
+        this._handleSetCardLike = handleSetCardLike;
+        this._handleDeleteCardLike = handleDeleteCardLike;
         this._like = data.likes;
         this._ownerId = data.owner._id;
         this._cardId = data._id;
@@ -52,15 +53,9 @@ export default class Card {
     
     _handleLikeClick(evt) {
         if(!evt.target.classList.contains('gallery__like_active')) {
-            this._api.setLikes(`${this._cardId}`)
-                .then(data => {
-                    this._handleLikeToggle(data)
-                })
+            this._handleSetCardLike(`${this._cardId}`);
         } else {
-            this._api.delete(`/likes/${this._cardId}`)
-                .then(data => {
-                    this._handleLikeToggle(data)
-            })  
+            this._handleDeleteCardLike(`/likes/${this._cardId}`)
         }
         
     }
@@ -76,7 +71,7 @@ export default class Card {
 
      this._element.querySelector('.gallery__trash').addEventListener('click', (evt) => {
         this._cardElement = evt.target.parentElement;
-        this._handleTrashClick(this._cardId, this._cardElement, this._api);
+        this._handleTrashClick(this._cardId, this._cardElement);
     })
 
     }

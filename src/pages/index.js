@@ -49,84 +49,89 @@ const namePlace = popupAddCard.querySelector('.popup__form-item_place'); //name 
 const linkImage = popupAddCard.querySelector('.popup__form-item_link-img'); //link img in the form add
 const profileFoto = document.querySelector('.profile__foto-container');
 
-const userInfo = new UserInfo({name: profileName, job: profileJob, api: api}, profileAvatar);
+const userInfo = new UserInfo({name: profileName, job: profileJob}, profileAvatar,
+    function(data) {
+        return api.editProfile(data).then(data => {
+            profileName.textContent = data.name;
+            profileJob.textContent = data.about;
+        });
+},
+    function (data) {
+        return api.updateAvatar(data).then(data => {
+                profileAvatar.setAttribute('src', data.avatar)
+            });
+}, function(data) {
+        return api.getUserInfo().then(data => {
+            this._name.textContent = data.name;
+            this._job.textContent =  data.about;
+            this._avatar.setAttribute('src', data.avatar);
+            return data._id;
+        });
+});
 
 //Турникеты
-const editProfileValidation = new FormValidator(formOptions, formElement); 
+const editProfileValidation = new FormValidator(formOptions, formElement);
 const addCardValidation = new FormValidator(formOptions, formElementAdd);
 const formAvatarValidation = new FormValidator(formOptions, formElementAvatar);
 const popupWithImages = new PopupWithImage('.popup__images'); // popup for large images
 
 const popupWithFormProfile = new PopupWithForm({
-    selector: '.popup', 
+    selector: '.popup',
     submit: (data) => {
         loading(buttonSubmitEdit, true, 'Сохранение...')
-            userInfo.setUserInfo(data).then(data => {
-            profileName.textContent = data.name;
-            profileJob.textContent = data.about;
-        })
+        userInfo.setUserInfo(data)
         .finally(() => {
             popupWithFormProfile.close()
             loading(buttonSubmitEdit, false, 'Сохранить')
-               
+
         })
     }
 
 });
 
-const popupWithFormAddCard = new PopupWithForm({
-    selector: '.popup__add',
-    submit: (data) => {
-        loading(buttonSubmitAdd, true, 'Сохранение...') 
-        api.addNewCard(data).then(data => {
-            const cardList = new Section({
-                data: [data],
-                renderer: (item) => {
-                    const card = new Card({data: item, cardSelector: '#gallery-template', handleCardClick: handleCardClick,
-                         api: api, myId: item.owner._id, handleTrashClick: (cardId, element, api) => {
-                            popupDeleteCard.open(cardId, element, api)
-                        },
-                    }).generateCard();
-					cardList.addItem(card); 
-                }
-            }, cardListSelector);
-            
-            cardList.renderItems()
-        })
-        .finally(() => {
-            popupWithFormAddCard.close();
-            loading(buttonSubmitAdd, false, 'Создать');
-        })
-    }
-})
-
+let cardList = null;
 userInfo.getUserProfile().then(id => {
 api.getInitialCards().then(function(items) {
-    const cardList = new Section ({
+//    const cardList = new Section ({
+    cardList = new Section ({
     data: items,
     renderer: (item) => {
-        const card = new Card({data: item, cardSelector: '#gallery-template', handleCardClick: handleCardClick, api: api, myId: id,
-         handleTrashClick: (cardId, element, api) => {
-            popupDeleteCard.open(cardId, element, api);
-        }
+        const card = new Card({
+            data: item, cardSelector: '#gallery-template', handleCardClick: handleCardClick,
+            api: api, myId: id, handleTrashClick, handleSetCardLike, handleDeleteCardLike
         }).generateCard();
         cardList.addItem(card);
-    }  
+    }
 }, cardListSelector) // в утилитах
 cardList.renderItems();
 })
 })
 
+const popupWithFormAddCard = new PopupWithForm({
+    selector: '.popup__add',
+    submit: (data) => {
+        loading(buttonSubmitAdd, true, 'Сохранение...')
+        api.addNewCard(data).then(data => {
+                    const card = new Card({
+                        data, cardSelector: '#gallery-template', handleCardClick: handleCardClick,
+                        api: api, myId: data.owner._id, handleTrashClick, handleSetCardLike, handleDeleteCardLike
+                    }).generateCard();
+                    cardList.addItem(card);
+            }, cardListSelector);
+
+            cardList.renderItems()
+                popupWithFormAddCard.close();
+                loading(buttonSubmitAdd, false, 'Создать');
+
+    }
+})
 
 // -----------------
 const popupEditAvatar = new PopupWithForm({
     selector: '.popup__avatar',
     submit: (data) => {
         loading(buttonAvatar, true, 'Сохранение...')
-        userInfo.editUserAvatar(data)
-            .then(data => {
-                profileAvatar.setAttribute('src', data.avatar) 
-            })
+        userInfo.setUserAvatar(data)
             .finally(() => {
                 popupEditAvatar.close()
                 loading(buttonAvatar, false, 'Сохранить')
@@ -149,7 +154,7 @@ buttonAdd.addEventListener('click', () => {
     linkImage.value = '';
     popupWithFormAddCard.open();
     addCardValidation.resetErrorFormOpen();
-   
+
   }); // Open Add Image
 
 const toggle = true; //рубильник валидации
@@ -159,12 +164,12 @@ addCardValidation.enableValidation(toggle);
 formAvatarValidation.enableValidation(toggle);
 
 //функции
-function loading (button, isLoading, text) { 
+function loading (button, isLoading, text) {
     if(isLoading) {
         button.removeAttribute('disabled')
         button.textContent = text;
     }
-    else {    
+    else {
         button.setAttribute('disabled', true)
         button.textContent = text;
     }
@@ -178,6 +183,24 @@ function editUserAvatar() {
     inputAvatarLink.value = userAvatar.link;
     popupEditAvatar.open();
     formAvatarValidation.enableValidation();
+}
+
+function handleSetCardLike(cardId) {
+    api.setLikes(cardId)
+    .then(data => {
+        this._handleLikeToggle(data)
+    })
+}
+
+function handleDeleteCardLike(cardId) {
+    api.delete(cardId)
+    .then(data => {
+        this._handleLikeToggle(data)
+    })
+}
+
+function handleTrashClick(cardId, element) {
+    popupDeleteCard.open(cardId, element, api)
 }
 
 // Радары

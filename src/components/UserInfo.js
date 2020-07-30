@@ -1,10 +1,12 @@
 export default class UserInfo {
-    constructor({name, job, api}, avatar) {
+    constructor({name, job}, avatar, handleUpdateProfile, handleUpdateAvatar, handleRetrieveUserInfo) {
         this._name = name;
         this._job = job;
-        this._api = api;
         this._avatar = avatar;
-        
+
+        this._handleUpdateProfile = handleUpdateProfile;
+        this._handleUpdateAvatar = handleUpdateAvatar;
+        this._handleRetrieveUserInfo = handleRetrieveUserInfo;
     }
 
     getUserInfo() {
@@ -17,10 +19,7 @@ export default class UserInfo {
 
     setUserInfo(data) {
         //принимает новые данные пользователя и добавляет их на страницу 
-        // this._name.textContent = values.name;
-        // this._job.textContent = values.job;
-        return this._api.editProfile(data);
-       
+        return this._handleUpdateProfile(data);
     }
 
     getUserAvatar() {
@@ -29,17 +28,12 @@ export default class UserInfo {
         }
     }
 
-    editUserAvatar(data) {
-        return this._api.avatar(data)
+    setUserAvatar(data) {
+        return this._handleUpdateAvatar(data);
     }
 
     getUserProfile() {
-        return this._api.getUserInfo().then(data => {
-            this._name.textContent = data.name;
-            this._job.textContent =  data.about;
-            this._avatar.setAttribute('src', data.avatar);
-            return data._id
-        })
+        return this._handleRetrieveUserInfo();
     }
 
 }

@@ -14,7 +14,10 @@ export default class Api {
         return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    })
+    .catch((err) => {
+      console.log(err)
+  })
   }
 //   --------------
 getInitialCards() {
@@ -25,7 +28,10 @@ getInitialCards() {
         return res.json();
       }
       return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    })
+    .catch((err) => {
+      console.log(err)
+  })
   }
   // ----------
   editProfile(data) {
@@ -100,7 +106,7 @@ delete(url) {
     })
 }
 
-avatar(data) {
+updateAvatar(data) {
   return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,
