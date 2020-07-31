@@ -15,7 +15,7 @@ const api = new Api(token);
 // Попапы
 const popupProfile = document.querySelector('.popup'); //попап профиля основной
 const popupAddCard = document.querySelector('.popup_add'); //попап добавления карточек
-const popupDeleteCard = new PopupDeleteCard('.popup_delete', loading); // попап подтверждения удаления карточек
+const popupDeleteCard = new PopupDeleteCard('.popup_delete', loading, handleDeleteCard); // попап подтверждения удаления карточек
 
 // buttons
 // const submit = popupProfile.querySelector('.popup__form-button'); //button in the profile form
@@ -199,7 +199,18 @@ function handleDeleteCardLike(cardId) {
 }
 
 function handleTrashClick(cardId, element) {
-    popupDeleteCard.open(cardId, element, api)
+    popupDeleteCard.open(cardId, element)
+}
+
+function handleDeleteCard(cardId, element) {
+    api.delete(`/${cardId}`)
+        .then(() => {
+            element.remove()
+        })
+        .finally(() => {
+            this.close();
+            this._loading(this._button, true, 'Удалить')
+        })
 }
 
 // Радары
