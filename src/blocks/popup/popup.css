@@ -12,14 +12,14 @@
 @import url(./__close-toggle/_img/popup__close-toggle_img.css);
 @import url(./__container-image/popup__container-image.css);
 @import url(./__image-src/popup__image-src.css);
-@import url(./__images/popup__images.css);
+@import url(./_images/popup_images.css);
 @import url(./__caption/popup__caption.css);
 @import url(./__input/popup__input.css);
 @import url(./__error/_visible/popup__error_visible.css);
 @import url(./__button/_disabled/popup__button_disabled.css);
 
 
-@import url(./__delete/popup__delete.css);
+@import url(./_delete/popup_delete.css);
 @import url(./__container-delete/popup__container-delete.css);
 @import url(./__delete-button/popup__delete-button.css);
 @import url(./__item-delete/popup__item-delete.css);

@@ -14,8 +14,8 @@ const api = new Api(token);
 
 // Попапы
 const popupProfile = document.querySelector('.popup'); //попап профиля основной
-const popupAddCard = document.querySelector('.popup__add'); //попап добавления карточек
-const popupDeleteCard = new PopupDeleteCard('.popup__delete', loading); // попап подтверждения удаления карточек
+const popupAddCard = document.querySelector('.popup_add'); //попап добавления карточек
+const popupDeleteCard = new PopupDeleteCard('.popup_delete', loading); // попап подтверждения удаления карточек
 
 // buttons
 // const submit = popupProfile.querySelector('.popup__form-button'); //button in the profile form
@@ -30,7 +30,7 @@ const buttonSubmitEdit = formElement.querySelector('.popup__form-submit_edit');
 const buttonSubmitAdd = formElementAdd.querySelector('.popup__form-submit_add');
 
 //Avatar
-const popupAvatar = document.querySelector('.popup__avatar'); //попап аватара
+const popupAvatar = document.querySelector('.popup_avatar'); //попап аватара
 const formElementAvatar = popupAvatar.querySelector('.popup__form_avatar_update');//форма аватара
 const buttonAvatar = formElementAvatar.querySelector('.popup__button');//кнопка формы аватара
 const profileAvatar = document.querySelector('.profile__avatar');//фото аватара
@@ -73,7 +73,7 @@ const userInfo = new UserInfo({name: profileName, job: profileJob}, profileAvata
 const editProfileValidation = new FormValidator(formOptions, formElement);
 const addCardValidation = new FormValidator(formOptions, formElementAdd);
 const formAvatarValidation = new FormValidator(formOptions, formElementAvatar);
-const popupWithImages = new PopupWithImage('.popup__images'); // popup for large images
+const popupWithImages = new PopupWithImage('.popup_images'); // popup for large images
 
 const popupWithFormProfile = new PopupWithForm({
     selector: '.popup',
@@ -92,7 +92,6 @@ const popupWithFormProfile = new PopupWithForm({
 let cardList = null;
 userInfo.getUserProfile().then(id => {
 api.getInitialCards().then(function(items) {
-//    const cardList = new Section ({
     cardList = new Section ({
     data: items,
     renderer: (item) => {
@@ -108,7 +107,7 @@ cardList.renderItems();
 })
 
 const popupWithFormAddCard = new PopupWithForm({
-    selector: '.popup__add',
+    selector: '.popup_add',
     submit: (data) => {
         loading(buttonSubmitAdd, true, 'Сохранение...')
         api.addNewCard(data).then(data => {
@@ -128,7 +127,7 @@ const popupWithFormAddCard = new PopupWithForm({
 
 // -----------------
 const popupEditAvatar = new PopupWithForm({
-    selector: '.popup__avatar',
+    selector: '.popup_avatar',
     submit: (data) => {
         loading(buttonAvatar, true, 'Сохранение...')
         userInfo.setUserAvatar(data)
