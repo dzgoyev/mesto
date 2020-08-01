@@ -1,9 +1,0 @@
-.popup__item {
-  margin-left: 34px;
-}
-
-@media (max-width: 320px) {
-  .popup__item {
-    margin-left: 22px;
-  }
-}
